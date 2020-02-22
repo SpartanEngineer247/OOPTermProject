@@ -1,0 +1,40 @@
+//
+//  Created by Raushan Khullar on 2/22/20.
+//  Co-created by Eddie Han on 2/23/20
+//  Copyright © 2020 Raushan Khullar. Eddie Han All rights reserved.
+//
+
+#include<string>
+#include<vector>
+#include<iostream>
+using namespace std;
+class user
+{
+private:
+    string NetID;
+    string password;
+    bool status;
+    double operationTime;
+    
+Public:
+ 
+ 
+    vector<bool> CheckWashingMachineStatus(string building)
+    {
+        //check the status and return vector
+        // have a class building with the status of all machines check from there.
+    }
+    
+    
+    int BookWashingMachine(string Building, int Machine)//potentially accept an object to make it easier to book the machine
+    {
+        //look for machine object with coressponding machine number and reserve if possible.
+    }
+    int BookDryingMachine(string Building, int Machine)
+    {
+        
+    }
+/*    Timer (Operation Time: Double):Keeps track of the machine time and reminds the user once it has completed its cycle.
+ */
+ 
+};
