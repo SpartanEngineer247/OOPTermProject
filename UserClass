@@ -1,7 +1,10 @@
 #pragma once
+
+#ifndef USER_H
+#define USER_H
 #include<string>
-#include<vector>
-#include<iostream>
+#include "Users_Database.h"
+
 using namespace std;
 
 class User
@@ -34,7 +37,22 @@ public:
         return NetID;
     }
 
-    bool checkPassword(static char* passwordtry)
+    string getPass()
+    {
+        return password;
+    }
+
+    bool getStatus()
+    {
+        return status;
+    }
+
+    double getOperations()
+    {
+        return operationTime;
+    }
+
+    bool checkPassword(static string passwordtry)
     {
         if (passwordtry == password)
         {
@@ -58,3 +76,5 @@ public:
 
     }
 };
+
+#endif
