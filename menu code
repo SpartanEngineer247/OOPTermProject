@@ -1,3 +1,8 @@
+#include<string>
+#include<vector>
+using namespace std;
+#include<iostream>
+
 int main()
 { int choice=0;
     do
@@ -17,16 +22,27 @@ int main()
         // checking choices
     if (choice==1)
     {
+        if(CreateNewUser(string netID, string password)==true)
+        {
+            if(Login(string netID, string password)==true)
+            {
+                
+            }
+
+        }
+        
+        
         
     }
         else if (choice==2)
         {
-            
+            Login(string netID, string password);
+           
         }
             
         else if (choice==3)
         {
-            
+            exit(0);
         }
     
     else
