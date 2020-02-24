@@ -1,0 +1,105 @@
+#pragma once
+
+#define USERS_DATABASE_H
+#include "User.h"
+#include<string>
+#include<map>
+#include<fstream>
+#include<iostream>
+using namespace std;
+
+class Users_Database
+{
+private:
+	static Users_Database *instance;
+	Users_Database()
+		{
+			//should have input of "machinesmemory.txt"
+			//create ADMIN object
+			//Table.insert(pair<string,User>("admin",ADMIN>));
+		}
+
+	map<string, User> Table;
+
+public:
+	static Users_Database* GetInstance()
+	{
+		if (instance == nullptr)
+		{
+			instance = new Users_Database();
+		}
+		return instance;
+	}
+	
+	~Users_Database()
+	{
+		ofstream outFileBuffer("usersmemory.txt");
+		if (outFileBuffer.fail())
+		{
+			cerr << "error saving to memory - the program must now exit. Warning! No changes to users were saved!";
+		}
+		else
+		{
+			//write a function that wipes the usersmemory.txt file clean
+			//write a loop function that scans through all users and saves all private data onto the txt file
+		}
+		outFileBuffer.close();
+
+		ofstream outFileBuffer2("machinesmemory.txt");
+		if (outFileBuffer2.fail())
+		{
+			cerr << "error saving to memory - the program must now exit. Warning! No changes to machines were saved!";
+		}
+		else
+		{
+			//write a function that wipes the machinesmemory.txt file clean
+			//write a loop function that scans through all machines and saves all private data onto the txt file
+		}
+		//call Admin destructor
+		Table.clear();
+		instance = nullptr;
+	}
+
+	bool Login(string inputnetID, static string inputpassword)
+	{
+		map<string, User>::iterator it;
+		it = Table.find(inputnetID);
+		if (it == Table.end())
+		{
+			cout << "Error! No user exists with the given netID.";
+			return false;
+		}
+		
+		if (it->second.checkPassword(inputpassword) == false)
+		{
+			cout << "Error! Incorrect password, please try again.";
+			return false;
+		}
+		return true;
+	}
+	
+	void CreateNewUser(static string newnetID, static string newpassword)
+	{
+
+	};
+
+	void DeleteNewUser(static string newnetID, static string newpassword)
+	{
+		if (Login(newnetID, newpassword) != true)
+		{
+			cout << "Error! Incorrect password. You cannot delete this user without proper credentials.";
+		}
+		else
+		{
+			map<string, User>::iterator it;
+			it = Table.find(newnetID);
+			Table.erase(newnetID);
+			cout << "User removed successfully. You will now be moved to main menu.";
+		}
+	};
+
+	double ChangeMachineStatus(string MachineName)
+	{
+
+	}
+};
