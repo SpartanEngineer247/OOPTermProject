@@ -1,3 +1,10 @@
+
+//  main.cpp
+//  Project
+//
+//  Created by Raushan Khullar on 2/22/20.
+//  Copyright © 2020 Raushan Khullar. All rights reserved.
+//
 #include<string>
 #include<vector>
 using namespace std;
@@ -22,175 +29,177 @@ int main()
         // checking choices
         if (choice==1)
         {
-            if(CreateNewUser(string netID, string password)==true)
+            // if(CreateNewUser(string netID, string password)==true)
+            // {
+            //   if(Login(string netID, string password)==true)
+            //  {
+            bool flag1=true;
+            int building_num2;
+            do
             {
-                if(Login(string netID, string password)==true)
-                { bool flag1=true;
-                    do
-                    {
-                        flag1=true;
-                        cout<<"1. A1"<<endl;
-                        cout<<"2. A2"<<endl;
-                        cout<<"3. A5"<<endl;
-                        cout<<"4. A6"<<endl;
-                        cout<<"0. go back to previous page"<<endl;
-                        
-                        int building_num=0;
-                        cin>>building_num;
-                        
-                        int building_num2;
-                        if ( building_num==0)
-                            
-                        {
-                            break;
-                        }
-                        else if ( building_num==1)
-                            
-                        {
-                            cout<<"1.A1A"<<endl;
-                            cout<<"2.A1B"<<endl;
-                            cout<<"3.A1C"<<endl;
-                            cout<<"0.previous page"<<endl;
-                            cin>>building_num2;
-                            if (building_num2==1)
-                            {
-                                cout<<"Washing machines"<<endl;
-                                cout<<CheckWashingMachineStatus("A1A");
-                                cout<<"Drying machines"<<endl;
-                                cout<<CheckDryingMachineStatus("A1A");
-                            }
-                            if (building_num2==2)
-                            {
-                                cout<<"Washing machines"<<endl;
-                                cout<<CheckWashingMachineStatus("A1B");
-                                cout<<"Drying machines"<<endl;
-                                cout<<CheckDryingMachineStatus("A1B");
-                            }
-                            if (building_num2==3)
-                            {
-                                cout<<"Washing machines"<<endl;
-                                cout<<CheckWashingMachineStatus("A1C");
-                                cout<<"Drying machines"<<endl;
-                                cout<<CheckDryingMachineStatus("A1C");
-                            }
-                        }
-                        else if ( building_num==2)
-                            
-                        {
-                            cout<<"1.A2A"<<endl;
-                            cout<<"2.A2B"<<endl;
-                            cout<<"3.A2C"<<endl;
-                            cout<<"0.previous page"<<endl;
-                            cin>>building_num2;
-                            
-                            if (building_num2==1)
-                            {
-                                cout<<"Washing machines"<<endl;
-                                cout<<CheckWashingMachineStatus("A2A");
-                                cout<<"Drying machines"<<endl;
-                                cout<<CheckDryingMachineStatus("A2A");
-                            }
-                            if (building_num2==2)
-                            {
-                                cout<<"Washing machines"<<endl;
-                                cout<<CheckWashingMachineStatus("A2B");
-                                cout<<"Drying machines"<<endl;
-                                cout<<CheckDryingMachineStatus("A2B");
-                            }
-                            if (building_num2==3)
-                            {
-                                cout<<"Washing machines"<<endl;
-                                cout<<CheckWashingMachineStatus("A2C");
-                                cout<<"Drying machines"<<endl;
-                                cout<<CheckDryingMachineStatus("A2C");
-                            }
-                        }
-                        else if ( building_num==3)
-                            
-                        {
-                            cout<<"1.A5A"<<endl;
-                            cout<<"2.A5B"<<endl;
-                            cout<<"3.A5C"<<endl;
-                            cout<<"0.previous page"<<endl;
-                            cin>>building_num2;
-                            if (building_num2==1)
-                            {
-                                cout<<"Washing machines"<<endl;
-                                cout<<CheckWashingMachineStatus("A5A");
-                                cout<<"Drying machines"<<endl;
-                                cout<<CheckDryingMachineStatus("A5A");
-                            }
-                            if (building_num2==2)
-                            {
-                                cout<<"Washing machines"<<endl;
-                                cout<<CheckWashingMachineStatus("A5B");
-                                cout<<"Drying machines"<<endl;
-                                cout<<CheckDryingMachineStatus("A5B");
-                            }
-                            if (building_num2==3)
-                            {
-                                cout<<"Washing machines"<<endl;
-                                cout<<CheckWashingMachineStatus("A5C");
-                                cout<<"Drying machines"<<endl;
-                                cout<<CheckDryingMachineStatus("A5C");
-                            }
-                        }
-                        
-                        else if ( building_num==4)
-                            
-                        {
-                            cout<<"1.A6A"<<endl;
-                            cout<<"2.A6B"<<endl;
-                            cout<<"3.A6C"<<endl;
-                            cout<<"0.previous page"<<endl;
-                            cin>>building_num2;
-                            if (building_num2==1)
-                            {
-                                cout<<"Washing machines"<<endl;
-                                cout<<CheckWashingMachineStatus("A6A");
-                                cout<<"Drying machines"<<endl;
-                                cout<<CheckDryingMachineStatus("A6A");
-                            }
-                            if (building_num2==2)
-                            {
-                                cout<<"Washing machines"<<endl;
-                                cout<<CheckWashingMachineStatus("A6B");
-                                cout<<"Drying machines"<<endl;
-                                cout<<CheckDryingMachineStatus("A6B");
-                            }
-                            if (building_num2==3)
-                            {
-                                cout<<"Washing machines"<<endl;
-                                cout<<CheckWashingMachineStatus("A6C");
-                                cout<<"Drying machines"<<endl;
-                                cout<<CheckDryingMachineStatus("A6C");
-                            }
-                        }
-                        else
-                        {flag1=false;
-                            cout<<"invalid entry please try again"<<endl;
-                        }
-                        if(building_num2==0)
-                        {
-                            continue;
-                        }
-                        
-                    }
-                    while(flag1==false);
+                flag1=true;
+                cout<<"1. A1"<<endl;
+                cout<<"2. A2"<<endl;
+                cout<<"3. A5"<<endl;
+                cout<<"4. A6"<<endl;
+                cout<<"0. go back to previous page"<<endl;
+                
+                int building_num=0;
+                cin>>building_num;
+                
+                //int building_num2;
+                if ( building_num==0)
                     
-                    
-                    
-                    
-                    
-                    
-                    
+                {
+                    break;
                 }
+                
+                
+                else if ( building_num==1)
+                    
+                {
+                    cout<<"1.A1A"<<endl;
+                    cout<<"2.A1B"<<endl;
+                    cout<<"3.A1C"<<endl;
+                    cout<<"0.previous page"<<endl;
+                    cin>>building_num2;
+                    if (building_num2==1)
+                    {
+                        cout<<"Washing machines"<<endl;
+                        //  cout<<CheckWashingMachineStatus("A1A");
+                        cout<<"Drying machines"<<endl;
+                        //   cout<<CheckDryingMachineStatus("A1A");
+                    }
+                    if (building_num2==2)
+                    {
+                        cout<<"Washing machines"<<endl;
+                        //    cout<<CheckWashingMachineStatus("A1B");
+                        cout<<"Drying machines"<<endl;
+                        //    cout<<CheckDryingMachineStatus("A1B");
+                    }
+                    if (building_num2==3)
+                    {
+                        cout<<"Washing machines"<<endl;
+                        //    cout<<CheckWashingMachineStatus("A1C");
+                        cout<<"Drying machines"<<endl;
+                        //    cout<<CheckDryingMachineStatus("A1C");
+                    }
+                }
+                else if ( building_num==2)
+                    
+                {
+                    cout<<"1.A2A"<<endl;
+                    cout<<"2.A2B"<<endl;
+                    cout<<"3.A2C"<<endl;
+                    cout<<"0.previous page"<<endl;
+                    cin>>building_num2;
+                    
+                    if (building_num2==1)
+                    {
+                        cout<<"Washing machines"<<endl;
+                        //        cout<<CheckWashingMachineStatus("A2A");
+                        cout<<"Drying machines"<<endl;
+                        //         cout<<CheckDryingMachineStatus("A2A");
+                    }
+                    if (building_num2==2)
+                    {
+                        cout<<"Washing machines"<<endl;
+                        //             cout<<CheckWashingMachineStatus("A2B");
+                        cout<<"Drying machines"<<endl;
+                        ///           cout<<CheckDryingMachineStatus("A2B");
+                    }
+                    if (building_num2==3)
+                    {
+                        cout<<"Washing machines"<<endl;
+                        //        cout<<CheckWashingMachineStatus("A2C");
+                        cout<<"Drying machines"<<endl;
+                        //     cout<<CheckDryingMachineStatus("A2C");
+                    }
+                }
+                else if ( building_num==3)
+                    
+                {
+                    cout<<"1.A5A"<<endl;
+                    cout<<"2.A5B"<<endl;
+                    cout<<"3.A5C"<<endl;
+                    cout<<"0.previous page"<<endl;
+                    cin>>building_num2;
+                    if (building_num2==1)
+                    {
+                        cout<<"Washing machines"<<endl;
+                        //              cout<<CheckWashingMachineStatus("A5A");
+                        cout<<"Drying machines"<<endl;
+                        //            cout<<CheckDryingMachineStatus("A5A");
+                    }
+                    if (building_num2==2)
+                    {
+                        cout<<"Washing machines"<<endl;
+                        //          cout<<CheckWashingMachineStatus("A5B");
+                        cout<<"Drying machines"<<endl;
+                        //        cout<<CheckDryingMachineStatus("A5B");
+                    }
+                    if (building_num2==3)
+                    {
+                        cout<<"Washing machines"<<endl;
+                        //      cout<<CheckWashingMachineStatus("A5C");
+                        cout<<"Drying machines"<<endl;
+                        //    cout<<CheckDryingMachineStatus("A5C");
+                    }
+                }
+                
+                else if ( building_num==4)
+                    
+                {
+                    cout<<"1.A6A"<<endl;
+                    cout<<"2.A6B"<<endl;
+                    cout<<"3.A6C"<<endl;
+                    cout<<"0.previous page"<<endl;
+                    cin>>building_num2;
+                    if (building_num2==1)
+                    {
+                        cout<<"Washing machines"<<endl;
+                        //       cout<<CheckWashingMachineStatus("A6A");
+                        cout<<"Drying machines"<<endl;
+                        //     cout<<CheckDryingMachineStatus("A6A");
+                    }
+                    if (building_num2==2)
+                    {
+                        cout<<"Washing machines"<<endl;
+                        //   cout<<CheckWashingMachineStatus("A6B");
+                        cout<<"Drying machines"<<endl;
+                        // cout<<CheckDryingMachineStatus("A6B");
+                    }
+                    if (building_num2==3)
+                    {
+                        cout<<"Washing machines"<<endl;
+                        //cout<<CheckWashingMachineStatus("A6C");
+                        cout<<"Drying machines"<<endl;
+                        // cout<<CheckDryingMachineStatus("A6C");
+                    }
+                }
+                else
+                { flag1=false;
+                    cout<<"invalid entry please try again"<<endl;
+                }
+                
+                
             }
+            while(flag1==false||building_num2==0);
+            
+            
+            
+            
+            
+            
+            
+            // }
+            // }
         }
         else if (choice==2)
         {
-            if(Login(string netID, string password)==true)
+            // if(Login(string netID, string password)==true)
             {bool flag2=true;
+                int building_num2;
                 do
                 {
                     flag2=true;
@@ -203,12 +212,14 @@ int main()
                     int building_num=0;
                     cin>>building_num;
                     
-                    int building_num2;
+                    //int building_num2;
                     if ( building_num==0)
                         
                     {
                         break;
                     }
+                    
+                    
                     else if ( building_num==1)
                         
                     {
@@ -220,23 +231,23 @@ int main()
                         if (building_num2==1)
                         {
                             cout<<"Washing machines"<<endl;
-                            cout<<CheckWashingMachineStatus("A1A");
+                            //  cout<<CheckWashingMachineStatus("A1A");
                             cout<<"Drying machines"<<endl;
-                            cout<<CheckDryingMachineStatus("A1A");
+                            //   cout<<CheckDryingMachineStatus("A1A");
                         }
                         if (building_num2==2)
                         {
                             cout<<"Washing machines"<<endl;
-                            cout<<CheckWashingMachineStatus("A1B");
+                            //    cout<<CheckWashingMachineStatus("A1B");
                             cout<<"Drying machines"<<endl;
-                            cout<<CheckDryingMachineStatus("A1B");
+                            //    cout<<CheckDryingMachineStatus("A1B");
                         }
                         if (building_num2==3)
                         {
                             cout<<"Washing machines"<<endl;
-                            cout<<CheckWashingMachineStatus("A1C");
+                            //    cout<<CheckWashingMachineStatus("A1C");
                             cout<<"Drying machines"<<endl;
-                            cout<<CheckDryingMachineStatus("A1C");
+                            //    cout<<CheckDryingMachineStatus("A1C");
                         }
                     }
                     else if ( building_num==2)
@@ -251,23 +262,23 @@ int main()
                         if (building_num2==1)
                         {
                             cout<<"Washing machines"<<endl;
-                            cout<<CheckWashingMachineStatus("A2A");
+                            //        cout<<CheckWashingMachineStatus("A2A");
                             cout<<"Drying machines"<<endl;
-                            cout<<CheckDryingMachineStatus("A2A");
+                            //         cout<<CheckDryingMachineStatus("A2A");
                         }
                         if (building_num2==2)
                         {
                             cout<<"Washing machines"<<endl;
-                            cout<<CheckWashingMachineStatus("A2B");
+                            //             cout<<CheckWashingMachineStatus("A2B");
                             cout<<"Drying machines"<<endl;
-                            cout<<CheckDryingMachineStatus("A2B");
+                            ///           cout<<CheckDryingMachineStatus("A2B");
                         }
                         if (building_num2==3)
                         {
                             cout<<"Washing machines"<<endl;
-                            cout<<CheckWashingMachineStatus("A2C");
+                            //        cout<<CheckWashingMachineStatus("A2C");
                             cout<<"Drying machines"<<endl;
-                            cout<<CheckDryingMachineStatus("A2C");
+                            //     cout<<CheckDryingMachineStatus("A2C");
                         }
                     }
                     else if ( building_num==3)
@@ -281,23 +292,23 @@ int main()
                         if (building_num2==1)
                         {
                             cout<<"Washing machines"<<endl;
-                            cout<<CheckWashingMachineStatus("A5A");
+                            //              cout<<CheckWashingMachineStatus("A5A");
                             cout<<"Drying machines"<<endl;
-                            cout<<CheckDryingMachineStatus("A5A");
+                            //            cout<<CheckDryingMachineStatus("A5A");
                         }
                         if (building_num2==2)
                         {
                             cout<<"Washing machines"<<endl;
-                            cout<<CheckWashingMachineStatus("A5B");
+                            //          cout<<CheckWashingMachineStatus("A5B");
                             cout<<"Drying machines"<<endl;
-                            cout<<CheckDryingMachineStatus("A5B");
+                            //        cout<<CheckDryingMachineStatus("A5B");
                         }
                         if (building_num2==3)
                         {
                             cout<<"Washing machines"<<endl;
-                            cout<<CheckWashingMachineStatus("A5C");
+                            //      cout<<CheckWashingMachineStatus("A5C");
                             cout<<"Drying machines"<<endl;
-                            cout<<CheckDryingMachineStatus("A5C");
+                            //    cout<<CheckDryingMachineStatus("A5C");
                         }
                     }
                     
@@ -312,36 +323,33 @@ int main()
                         if (building_num2==1)
                         {
                             cout<<"Washing machines"<<endl;
-                            cout<<CheckWashingMachineStatus("A6A");
+                            //       cout<<CheckWashingMachineStatus("A6A");
                             cout<<"Drying machines"<<endl;
-                            cout<<CheckDryingMachineStatus("A6A");
+                            //     cout<<CheckDryingMachineStatus("A6A");
                         }
                         if (building_num2==2)
                         {
                             cout<<"Washing machines"<<endl;
-                            cout<<CheckWashingMachineStatus("A6B");
+                            //   cout<<CheckWashingMachineStatus("A6B");
                             cout<<"Drying machines"<<endl;
-                            cout<<CheckDryingMachineStatus("A6B");
+                            // cout<<CheckDryingMachineStatus("A6B");
                         }
                         if (building_num2==3)
                         {
                             cout<<"Washing machines"<<endl;
-                            cout<<CheckWashingMachineStatus("A6C");
+                            //cout<<CheckWashingMachineStatus("A6C");
                             cout<<"Drying machines"<<endl;
-                            cout<<CheckDryingMachineStatus("A6C");
+                            // cout<<CheckDryingMachineStatus("A6C");
                         }
                     }
                     else
-                    {flag2=false;
+                    { flag2=false;
                         cout<<"invalid entry please try again"<<endl;
                     }
-                    if(building_num2==0)
-                    {
-                        continue;
-                    }
+                    
                     
                 }
-                while(flag2==false);
+                while(flag2==false||building_num2==0);
                 
                 
                 
