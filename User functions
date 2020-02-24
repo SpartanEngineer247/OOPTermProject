@@ -1,40 +1,43 @@
-//
-//  Created by Raushan Khullar on 2/22/20.
-//  Co-created by Eddie Han on 2/23/20
-//  Copyright © 2020 Raushan Khullar. Eddie Han All rights reserved.
-//
-
-#include<string>
-#include<vector>
-#include<iostream>
-using namespace std;
-class user
-{
-private:
-    string NetID;
-    string password;
-    bool status;
-    double operationTime;
-    
-Public:
- 
- 
-    vector<bool> CheckWashingMachineStatus(string building)
+int main()
+{ int choice=0;
+    do
     {
-        //check the status and return vector
-        // have a class building with the status of all machines check from there.
-    }
+        
+    // displaying menu
+    cout<<"1.Create new user"<<endl;
+    cout<<"2.Login "<<endl;
+    cout<<"3.Exit"<<endl;
     
-    
-    int BookWashingMachine(string Building, int Machine)//potentially accept an object to make it easier to book the machine
-    {
-        //look for machine object with coressponding machine number and reserve if possible.
-    }
-    int BookDryingMachine(string Building, int Machine)
+    int choice;
+        
+    cout<<"Enter 1 to create new user.\nEnter 2 to login.\nEnter 3 to exit "<<endl;
+    // accepting users choice
+        cin>>choice;
+        
+        // checking choices
+    if (choice==1)
     {
         
     }
-/*    Timer (Operation Time: Double):Keeps track of the machine time and reminds the user once it has completed its cycle.
- */
- 
-};
+        else if (choice==2)
+        {
+            
+        }
+            
+        else if (choice==3)
+        {
+            
+        }
+    
+    else
+    {
+       
+        cout<<"invalid input, please try again"<<endl;
+        continue;
+    }
+    
+}
+
+while(choice!=3);
+}
+
