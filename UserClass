@@ -1,0 +1,60 @@
+#pragma once
+#include<string>
+#include<vector>
+#include<iostream>
+using namespace std;
+
+class User
+{
+private:
+    string NetID;
+    string password;
+    bool status;
+    double operationTime;
+
+public:
+    User(string inputNetID, string inputpassword)
+    {
+        NetID = inputNetID;
+        password = inputpassword;
+        status = false;
+        operationTime = 0.0;
+    }
+
+    ~User()
+    {
+        NetID = "-1";
+        password = "-1";
+        status = false;
+        operationTime = 0.0;
+    }
+
+    string getID()
+    {
+        return NetID;
+    }
+
+    bool checkPassword(static char* passwordtry)
+    {
+        if (passwordtry == password)
+        {
+            return true;
+        }
+        else { return false; }
+    }
+
+    vector<bool> CheckWashingMachineStatus(string building)
+    {
+
+    }
+
+    int BookWashingMachine(string Building, int Machine)
+    {
+
+    }
+
+    int BookDryingMachine(string Building, int Machine)
+    {
+
+    }
+};
