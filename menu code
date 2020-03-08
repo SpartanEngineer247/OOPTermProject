@@ -2,11 +2,12 @@
 //  main.cpp
 //  Project
 //
-//  Created by Raushan Khullar and Eddie Han on 2/22/20.
-//  Copyright © 2020 Raushan Khullar, Eddie Han. All rights reserved.
+//  Created by Raushan Khullar on 2/22/20.
+//  Copyright © 2020 Raushan Khullar. All rights reserved.
 //
 #include<string>
 #include<vector>
+#include"UserTable.h"
 using namespace std;
 #include<iostream>
 
@@ -27,7 +28,10 @@ int main()
         cin>>choice;
         
         // checking choices
-        
+        Users_Database *s1;
+            s1 = Users_Database::GetInstance();
+            //first time calling, will successfully create the instance
+    
         string NetID; string Password;
         if (choice==1)
         {
@@ -36,14 +40,14 @@ int main()
             cout<<" enter password\n";
             cin>>Password;
             
-            CreateNewUser( NetID , Password);
+            s1->CreateNewUser( NetID , Password);
             //
             cout<<" Please login now\n";
             cout<<"enter NetID\n";
             cin>>NetID;
             cout<<" enter password\n";
             cin>>Password;
-              if(Login( NetID, Password)==true)
+              if(s1->Login( NetID, Password)==true)
              {
             bool flag1=true;
             int building_num2;
@@ -118,7 +122,7 @@ int main()
                        cin>>NetID;
                        cout<<" enter password\n";
                        cin>>Password;
-             if(Login(string netID, string password)==true)
+             if(s1->Login( NetID,  Password)==true)
              {
             bool flag2=true;
                 int building_num2;
