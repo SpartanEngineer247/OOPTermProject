@@ -12,11 +12,14 @@ class Users_Database
 {
 private:
 	static Users_Database *instance;
+	static string currentuser;
+
 	Users_Database()
 		{
 			//should have input of "machinesmemory.txt"
 			//create ADMIN object
 			//Table.insert(pair<string,User>("admin",ADMIN>));
+		currentuser = "";
 		}
 
 	map<string, User> Table;
@@ -56,7 +59,9 @@ public:
 			//write a loop function that scans through all machines and saves all private data onto the txt file
 		}
 		//call Admin destructor
+		
 		Table.clear();
+		currentuser = "";
 		instance = nullptr;
 	}
 
@@ -76,11 +81,23 @@ public:
 			return false;
 		}
 		return true;
+		currentuser = inputnetID;
 	}
 	
 	void CreateNewUser(static string newnetID, static string newpassword)
 	{
-
+		map<string, User>::iterator it;
+		it = Table.find(newnetID);
+		if (it != Table.end())
+		{
+			cout << "Error! This user already exists, please try to log in.";
+		}
+		else
+		{
+			User* userptr;
+			userptr = new User(newnetID, newpassword);
+			Table.emplace(newnetID, userptr);
+		}
 	};
 
 	void DeleteNewUser(static string newnetID, static string newpassword)
