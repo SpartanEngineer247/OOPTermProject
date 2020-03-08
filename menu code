@@ -1,3 +1,10 @@
+//
+//  main.cpp
+//  Project
+//
+//  Created by Raushan Khullar on 2/22/20.
+//  Copyright © 2020 Raushan Khullar. All rights reserved.
+//
 #include<string>
 #include<vector>
 using namespace std;
@@ -20,12 +27,24 @@ int main()
         cin>>choice;
         
         // checking choices
+        
+        string NetID; string Password;
         if (choice==1)
         {
-            // if(CreateNewUser(string netID, string password)==true)
-            // {
-            //   if(Login(string netID, string password)==true)
-            //  {
+            cout<<"enter NetID\n";
+            cin>>NetID;
+            cout<<" enter password\n";
+            cin>>Password;
+            
+            CreateNewUser( NetID , Password);
+            //
+            cout<<" Please login now\n";
+            cout<<"enter NetID\n";
+            cin>>NetID;
+            cout<<" enter password\n";
+            cin>>Password;
+              if(Login( NetID, Password)==true)
+             {
             bool flag1=true;
             int building_num2;
             do
@@ -92,10 +111,16 @@ int main()
             
             
         }
+        }
         else if (choice==2)
         {
-            // if(Login(string netID, string password)==true)
-            {bool flag2=true;
+            cout<<"enter NetID\n";
+                       cin>>NetID;
+                       cout<<" enter password\n";
+                       cin>>Password;
+             if(Login(string netID, string password)==true)
+             {
+            bool flag2=true;
                 int building_num2;
                 do
                 {
@@ -175,3 +200,35 @@ int main()
     
     while(choice!=3);
 }
+
+
+/*
+ class user
+ {
+ private:
+ string NetID;
+ string password;
+ bool status;
+ double operationTime;
+ 
+ public:
+ vector<bool> CheckWashingMachineStatus(string building)
+ {
+ //check the status and return vector
+ // have a class building with the status of all machines check from there.
+ }
+ 
+ 
+ int BookWashingMachine(string Building, int Machine)//potentially accept an object to make it easier to book the machine
+ {
+ //look for machine object with coressponding machine number and reserve if possible.
+ }
+ int BookDryingMachine(string Building, int Machine)
+ {
+ 
+ }
+ /*    Timer (Operation Time: Double):Keeps track of the machine time and reminds the user once it has completed its cycle.
+ 
+ 
+ };
+ */
