@@ -1,0 +1,13 @@
+using namespace std;
+int main()
+{
+
+
+    auto f = []() {std::cout << "---------------- I waited to print! ----------------\n"; };
+   Timer t1{10000,f};
+    
+    cout<<" this is back in main";
+ //  Timer t2{10'000,f};
+   //Timer t3{20'000,f};
+  // Timer t4{1000,f};
+}
