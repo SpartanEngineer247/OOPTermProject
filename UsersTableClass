@@ -1,7 +1,7 @@
 #pragma once
 
-#define USERS_DATABASE_H
-#include "User.h"
+#include "Users.h"
+#include "Machine.h"
 #include<string>
 #include<map>
 #include<fstream>
@@ -12,17 +12,76 @@ class Users_Database
 {
 private:
 	static Users_Database *instance;
-	static string currentuser;
+	string currentuser;
 
 	Users_Database()
-		{
-			//should have input of "machinesmemory.txt"
-			//create ADMIN object
-			//Table.insert(pair<string,User>("admin",ADMIN>));
+	{
 		currentuser = "";
+
+		ifstream inFileBuffer("usersmemory.txt");
+		if (inFileBuffer.fail())
+		{
+			cerr << "ERROR OPENING MEMORY. Please check that memory files are not corrupted. (USERSMEMORY)";
 		}
 
-	map<string, User> Table;
+		string newnetID;
+		string newpassword;
+		bool newstatus;
+		double newtime;
+
+		while (!inFileBuffer.eof())
+		{
+			inFileBuffer >> newnetID >> newpassword >> newstatus >> newtime;
+			User* userptr;
+			userptr = new User(newnetID, newpassword, newstatus, newtime);
+			Table.emplace(newnetID, userptr);
+		}
+		inFileBuffer.close();
+
+		ifstream inFileBuffer2("washingmachinesmemory.txt");
+		if (inFileBuffer2.fail())
+		{
+			cerr << "ERROR OPENING MEMORY. Please check that memory files are not corrupted. (WASHINGMACHINESMEMORY)";
+		}
+
+		string newname2;
+		bool newstatus2;
+		int newtimer2;
+		int newfunction2;
+
+		while (!inFileBuffer.eof())
+		{
+			inFileBuffer >> newname2 >> newstatus2 >> newtimer2 >> newfunction2;
+			WashingMachine* wmachineptr;
+			wmachineptr = new WashingMachine(newname2, newstatus2, newtimer2, newfunction2);
+			WashingTable.emplace(newname2, wmachineptr);
+		}
+		inFileBuffer2.close();
+
+		ifstream inFileBuffer3("dryingmachinesmemory.txt");
+		if (inFileBuffer3.fail())
+		{
+			cerr << "ERROR OPENING MEMORY. Please check that memory files are not corrupted. (DRYINGMACHINESMEMORY)";
+		}
+
+		string newname3;
+		bool newstatus3;
+		int newtimer3;
+		int newfunction3;
+
+		while (!inFileBuffer.eof())
+		{
+			inFileBuffer3 >> newname3 >> newstatus3 >> newtimer3 >> newfunction3;
+			DryingMachine* dmachineptr;
+			dmachineptr = new DryingMachine(newname3, newstatus3, newtimer3, newfunction3);
+			DryingTable.emplace(newname3, dmachineptr);
+		}
+		inFileBuffer3.close();
+	}
+
+	map<string, User*> Table;
+	map<string, WashingMachine*> WashingTable;
+	map<string, DryingMachine*> DryingTable;
 
 public:
 	static Users_Database* GetInstance()
@@ -39,35 +98,73 @@ public:
 		ofstream outFileBuffer("usersmemory.txt");
 		if (outFileBuffer.fail())
 		{
-			cerr << "error saving to memory - the program must now exit. Warning! No changes to users were saved!";
+			cerr << "ERROR SAVING TO MEMORY. Warning! No changes to users were saved!";
 		}
 		else
 		{
-			//write a function that wipes the usersmemory.txt file clean
-			//write a loop function that scans through all users and saves all private data onto the txt file
+			map<string, User*>::iterator it;
+			for (it = Table.begin(); it != Table.end(); it++)
+			{
+				outFileBuffer << it->first << " ";
+				outFileBuffer << it->second->getPass() << " ";
+				outFileBuffer << it->second->getStatus() << " ";
+				outFileBuffer << it->second->getOperations() << endl;
+			}
+
 		}
 		outFileBuffer.close();
 
-		ofstream outFileBuffer2("machinesmemory.txt");
+		ofstream outFileBuffer2("washingmachinesmemory.txt");
 		if (outFileBuffer2.fail())
 		{
-			cerr << "error saving to memory - the program must now exit. Warning! No changes to machines were saved!";
+			cerr << "ERROR SAVING TO MEMORY. Warning! No changes to machines were saved!";
 		}
 		else
 		{
-			//write a function that wipes the machinesmemory.txt file clean
 			//write a loop function that scans through all machines and saves all private data onto the txt file
+			map<string, WashingMachine*>::iterator it;
+			for (it = WashingTable.begin(); it != WashingTable.end(); it++)
+			{
+				outFileBuffer << it->first << " ";
+				outFileBuffer << it->second-> getname()<< " ";
+				outFileBuffer << it->second-> getstatus()<< " ";
+				outFileBuffer << it->second-> gettimer() << " ";
+				outFileBuffer << it->second-> getcurrentfunction() << endl;
+			}
 		}
-		//call Admin destructor
-		
+		outFileBuffer2.close();
+
+		ofstream outFileBuffer3("dryingmachinesmemory.txt");
+		if (outFileBuffer3.fail())
+		{
+			cerr << "ERROR SAVING TO MEMORY. Warning! No changes to machines were saved!";
+		}
+		else
+		{
+			//write a loop function that scans through all machines and saves all private data onto the txt file
+			map<string, DryingMachine*>::iterator it;
+			for (it = DryingTable.begin(); it != DryingTable.end(); it++)
+			{
+				outFileBuffer << it->first << " ";
+				outFileBuffer << it->second->getname() << " ";
+				outFileBuffer << it->second->getstatus() << " ";
+				outFileBuffer << it->second->getcurrentfunction() << " ";
+				outFileBuffer << it->second->getneedcleaning() << " ";
+				outFileBuffer << it->second->gettimer() << endl;
+			}
+		}
+		outFileBuffer3.close();
+
 		Table.clear();
+		WashingTable.clear();
+		DryingTable.clear();
 		currentuser = "";
 		instance = nullptr;
 	}
 
-	bool Login(string inputnetID, static string inputpassword)
+	bool Login(string inputnetID, string &inputpassword)
 	{
-		map<string, User>::iterator it;
+		map<string, User*>::iterator it;
 		it = Table.find(inputnetID);
 		if (it == Table.end())
 		{
@@ -75,49 +172,53 @@ public:
 			return false;
 		}
 		
-		if (it->second.checkPassword(inputpassword) == false)
+		if (it->second->checkPassword(inputpassword) == false)
 		{
-			cout << "Error! Incorrect password, please try again.";
+			cout << "Error! Incorrect password!";
 			return false;
 		}
 		return true;
 		currentuser = inputnetID;
 	}
 	
-	void CreateNewUser(static string newnetID, static string newpassword)
+	bool CreateNewUser(string &newnetID, string &newpassword)
 	{
-		map<string, User>::iterator it;
+		map<string, User*>::iterator it;
 		it = Table.find(newnetID);
 		if (it != Table.end())
 		{
 			cout << "Error! This user already exists, please try to log in.";
+			return false;
 		}
 		else
 		{
 			User* userptr;
 			userptr = new User(newnetID, newpassword);
-			Table.emplace(newnetID, userptr);
+			Table.emplace(newnetID,userptr);
+			return true;
 		}
 	};
 
-	void DeleteNewUser(static string newnetID, static string newpassword)
+	bool DeleteNewUser(string &newnetID, string &newpassword)
 	{
 		if (Login(newnetID, newpassword) != true)
 		{
-			cout << "Error! Incorrect password. You cannot delete this user without proper credentials.";
+			cout << "You cannot delete this user without proper credentials.";
+			return false;
 		}
 		else
 		{
-			map<string, User>::iterator it;
+			map<string, User*>::iterator it;
 			it = Table.find(newnetID);
 			Table.erase(newnetID);
-			cout << "User removed successfully. You will now be moved to main menu.";
+			cout << "User removed successfully.";
+			return true;
 		}
 	};
 
-	double ChangeMachineStatus(string MachineName)
+	void logout()
 	{
-
+		currentuser = "";
 	}
 };
 
