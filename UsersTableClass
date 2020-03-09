@@ -51,7 +51,7 @@ private:
 
 		while (!inFileBuffer2.eof())
 		{
-			inFileBuffer >> newname2 >> newstatus2 >> newtimer2 >> newfunction2;
+			inFileBuffer2 >> newname2 >> newstatus2 >> newtimer2 >> newfunction2;
 			WashingMachine* wmachineptr;
 			wmachineptr = new WashingMachine(newname2, newstatus2, newtimer2, newfunction2);
 			WashingTable.emplace(newname2, wmachineptr);
@@ -125,11 +125,10 @@ public:
 			map<string, WashingMachine*>::iterator it;
 			for (it = WashingTable.begin(); it != WashingTable.end(); it++)
 			{
-				outFileBuffer << it->first << " ";
-				outFileBuffer << it->second-> getname()<< " ";
-				outFileBuffer << it->second-> getstatus()<< " ";
-				outFileBuffer << it->second-> gettimer() << " ";
-				outFileBuffer << it->second-> getcurrentfunction() << endl;
+				outFileBuffer2 << it->first << " ";
+				outFileBuffer2 << it->second-> getstatus()<< " ";
+				outFileBuffer2 << it->second-> gettimer() << " ";
+				outFileBuffer2 << it->second-> getcurrentfunction() << endl;
 			}
 		}
 		outFileBuffer2.close();
@@ -145,12 +144,10 @@ public:
 			map<string, DryingMachine*>::iterator it;
 			for (it = DryingTable.begin(); it != DryingTable.end(); it++)
 			{
-				outFileBuffer << it->first << " ";
-				outFileBuffer << it->second->getname() << " ";
-				outFileBuffer << it->second->getstatus() << " ";
-				outFileBuffer << it->second->getcurrentfunction() << " ";
-				outFileBuffer << it->second->getneedcleaning() << " ";
-				outFileBuffer << it->second->gettimer() << endl;
+				outFileBuffer3 << it->first << " ";
+				outFileBuffer3 << it->second->getstatus() << " ";
+				outFileBuffer3 << it->second->getcurrentfunction() << " ";
+				outFileBuffer3 << it->second->gettimer() << endl;
 			}
 		}
 		outFileBuffer3.close();
