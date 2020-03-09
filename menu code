@@ -34,6 +34,8 @@ int main()
         cout<<"2.Login "<<endl;
         cout<<"3.Exit"<<endl;
         
+        Users_Database::logout();
+        
         int choice;
         
         cout<<"Enter 1 to create new user.\nEnter 2 to login.\nEnter 3 to exit "<<endl;
