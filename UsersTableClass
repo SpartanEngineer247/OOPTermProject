@@ -49,7 +49,7 @@ private:
 		int newtimer2;
 		int newfunction2;
 
-		while (!inFileBuffer.eof())
+		while (!inFileBuffer2.eof())
 		{
 			inFileBuffer >> newname2 >> newstatus2 >> newtimer2 >> newfunction2;
 			WashingMachine* wmachineptr;
@@ -69,7 +69,7 @@ private:
 		int newtimer3;
 		int newfunction3;
 
-		while (!inFileBuffer.eof())
+		while (!inFileBuffer3.eof())
 		{
 			inFileBuffer3 >> newname3 >> newstatus3 >> newtimer3 >> newfunction3;
 			DryingMachine* dmachineptr;
