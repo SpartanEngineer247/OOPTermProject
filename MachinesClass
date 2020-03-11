@@ -11,7 +11,6 @@ class Machine
 protected:
 	string name;	//name of machine
 	bool status;	//availability of machine - if false, machine is available to use
-	int timer;		//the time left of the machine's operation - this may be removed if needed
 	//setting to the 'minutes of operation' the machine is operating with right now. Is -1 if the machine is not operating, -2 if broken
 	int currentfunction;
 public:
@@ -20,15 +19,13 @@ public:
 	{
 		name = "NA";
 		status = false;
-		timer = 0;
 		currentfunction = -1;
 	}
 	//preferred constructor - the inputs are ideally taken from file information
-	Machine(string newname, bool currentstatus, int currenttime, int newop)
+	Machine(string newname, bool currentstatus, int newop)
 	{
 		name = newname;
 		status = currentstatus;
-		timer = currenttime;
 		currentfunction = newop;
 	}
 
@@ -41,10 +38,7 @@ public:
 	{
 		return status;
 	}
-	int gettimer()
-	{
-		return timer;
-	}
+
 	int getcurrentfunction()
 	{
 		return currentfunction;
@@ -58,31 +52,17 @@ public:
 
 	//abstract function, should print out the operational information of the machine
 	virtual void printoperation() = 0;
-
-	//machine that checks whether the timer is positive and if so, mark the machine as operating
-	//again this may be removed depending on how timer is implemented
-	void autoupdate()
-	{
-		if (timer == 0)
-		{
-			status = false;
-		}
-		else
-		{
-			status = true;
-		}
-	}
 };
 
 class WashingMachine : public Machine
 {
 private:
 	//hardcoded some 'minutes of operation' of a washing machine - this may be updated later to be able to read from file
-	int machinefunction[5] = { 40, 80, 90, 120, 150 };
+	int machinefunction[5] = { 10, 20, 25, 30, 50 };
 public:
 	//constructors - pretty self explanatory
 	WashingMachine() :Machine() { currentfunction = -1; }
-	WashingMachine(string inname, bool currentstatus, int currenttime, int currentsetting) :Machine(inname, currentstatus, currenttime, currentsetting){}
+	WashingMachine(string inname, bool currentstatus, int currentsetting) :Machine(inname, currentstatus, currentsetting){}
 
 	//change status now depends on which setting the machine is set to... -1 means its empty and available, anything else
 	//and it is currently in operation
@@ -112,20 +92,25 @@ public:
 		{
 			cout << "IN OPERATION.";
 			cout << endl << "Current Cycle Setting: " << machinefunction[currentfunction] << " minutes";
-			cout << endl << "Time left: " << timer;
+			//Time left?
 		}
+	}
+
+	int getminutes(int setting)
+	{
+		return machinefunction[setting];
 	}
 };
 
 class DryingMachine : public Machine
 {
 private:
-	int machinefunction[5] = { 20, 40, 55, 120, 150 };
+	int machinefunction[5] = { 5, 10, 15, 20, 30 };
 	bool needcleaning;
 public:
 	//constructors, easy enough
 	DryingMachine() :Machine() { currentfunction = -1; needcleaning = true; }
-	DryingMachine(string inname, bool currentstatus, int currenttime, int currentsetting) :Machine(inname, currentstatus, currenttime, currentsetting)
+	DryingMachine(string inname, bool currentstatus, int currentsetting) :Machine(inname, currentstatus, currentsetting)
 	{
 		currentfunction = currentsetting;
 		needcleaning = true;
@@ -165,7 +150,7 @@ public:
 		{
 			cout << "IN OPERATION.";
 			cout << endl << "Current Cycle Setting: " << machinefunction[currentfunction] << " minutes";
-			cout << endl << "Time left: " << timer;
+			//Time left?
 		}
 		if (needcleaning == true)
 		{
@@ -177,5 +162,10 @@ public:
 	bool getneedcleaning()
 	{
 		return needcleaning;
+	}
+
+	int getminutes(int setting)
+	{
+		return machinefunction[setting];
 	}
 };
