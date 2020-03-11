@@ -1,41 +1,20 @@
-//
-//  Timer.h
-//  Project
-//
-//  Created by Raushan Khullar on 3/8/20.
-//  Copyright © 2020 Raushan Khullar. All rights reserved.
-//
-#include<iostream>
+
 #include <chrono>
+#include <iostream>
+#include <future>
+#include <time.h>
 #include <thread>
-#include <functional>
-#include <mutex>
-#include <condition_variable>
 using namespace std;
-class Timer {
-public:
-    Timer(size_t time, const std::function<void(void)>& f) : time{std::chrono::milliseconds{time}}, f{f} {}
-    ~Timer() { wait_thread.join(); }
 
-private:
-    void wait_then_call()
+void timer(int s) {
+  //  cout<<"enter number of seconds"<<endl;
+      // int seconds;
+    //   cin>>seconds;
+    std::cout << "Start\n";
+    for(int i=0;i<s;++i)
     {
-        std::unique_lock<std::mutex> lck{mtx};
-        for(int i{10}; i > 0; --i) {
-          
-            std::cout << "Thread " << wait_thread.get_id() << " countdown at: " << '\t' << i << '\n';
-            cv.wait_for(lck, time / 10);
-        }
-        
-                       cout<< " end of timer, collect laundry \n";
-                  
-        
-        f();
+        std::cout << (i+1) << '\n';
+        std::this_thread::sleep_for(std::chrono::seconds(1));
     }
-    std::mutex mtx;
-    std::condition_variable cv{};
-    std::chrono::milliseconds time;
-    std::function <void(void)> f;
-    std::thread wait_thread{[this]() {wait_then_call(); }};
-};
-
+    std::cout << "DONE\n";
+}
