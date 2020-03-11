@@ -46,14 +46,13 @@ private:
 
 		string newname2;
 		bool newstatus2;
-		int newtimer2;
 		int newfunction2;
 
 		while (!inFileBuffer2.eof())
 		{
-			inFileBuffer2 >> newname2 >> newstatus2 >> newtimer2 >> newfunction2;
+			inFileBuffer2 >> newname2 >> newstatus2 >> newfunction2;
 			WashingMachine* wmachineptr;
-			wmachineptr = new WashingMachine(newname2, newstatus2, newtimer2, newfunction2);
+			wmachineptr = new WashingMachine(newname2, newstatus2, newfunction2);
 			WashingTable.emplace(newname2, wmachineptr);
 		}
 		inFileBuffer2.close();
@@ -66,14 +65,13 @@ private:
 
 		string newname3;
 		bool newstatus3;
-		int newtimer3;
 		int newfunction3;
 
 		while (!inFileBuffer3.eof())
 		{
-			inFileBuffer3 >> newname3 >> newstatus3 >> newtimer3 >> newfunction3;
+			inFileBuffer3 >> newname3 >> newstatus3 >> newfunction3;
 			DryingMachine* dmachineptr;
-			dmachineptr = new DryingMachine(newname3, newstatus3, newtimer3, newfunction3);
+			dmachineptr = new DryingMachine(newname3, newstatus3, newfunction3);
 			DryingTable.emplace(newname3, dmachineptr);
 		}
 		inFileBuffer3.close();
@@ -127,7 +125,6 @@ public:
 			{
 				outFileBuffer2 << it->first << " ";
 				outFileBuffer2 << it->second-> getstatus()<< " ";
-				outFileBuffer2 << it->second-> gettimer() << " ";
 				outFileBuffer2 << it->second-> getcurrentfunction() << endl;
 			}
 		}
@@ -146,8 +143,7 @@ public:
 			{
 				outFileBuffer3 << it->first << " ";
 				outFileBuffer3 << it->second->getstatus() << " ";
-				outFileBuffer3 << it->second->getcurrentfunction() << " ";
-				outFileBuffer3 << it->second->gettimer() << endl;
+				outFileBuffer3 << it->second->getcurrentfunction() << endl;
 			}
 		}
 		outFileBuffer3.close();
@@ -239,6 +235,7 @@ public:
 		it->second->changestatus(newsetting);
 		cout << "You have chosen option " << newsetting << ". The machine is now in use.";
 		cout << "Time left: " << it->second->getminutes(newsetting) << " minutes.";
+
 	}
 
 	void changedryingmachinestatus(string machinename, int newsetting)
