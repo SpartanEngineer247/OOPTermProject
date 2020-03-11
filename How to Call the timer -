@@ -1,13 +1,17 @@
+
+#include <chrono>
+#include <iostream>
+#include <future>
+#include <time.h>
+#include <thread>
 using namespace std;
-int main()
+
+int main ()
 {
-
-
-    auto f = []() {std::cout << "---------------- I waited to print! ----------------\n"; };
-   Timer t1{10000,f};
-    
-    cout<<" this is back in main";
- //  Timer t2{10'000,f};
-   //Timer t3{20'000,f};
-  // Timer t4{1000,f};
+    int s =10;
+   auto a = std::async(timer,s);//(functionname,time in seconds)
+    std::cout << "test\n";
+     auto b=std::async(timer,20);
+    //auto a1=   std::async(timer);
+    // auto future110 = std::async(timer);
 }
