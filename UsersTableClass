@@ -143,10 +143,10 @@ public:
 			map<string, DryingMachine*>::iterator it;
 			for (it = DryingTable.begin(); it != DryingTable.end(); it++)
 			{
-				outFileBuffer3 << it->first << " ";
-				outFileBuffer3 << it->second->getstatus() << " ";
-				outFileBuffer2 << it->second->getcurrentfunction() << " ";
-				outFileBuffer2 << it->second->getoperations() << endl;
+                		outFileBuffer3 << it->first << " ";
+                		outFileBuffer3 << it->second->getstatus() << " ";
+                		outFileBuffer3 << it->second->getcurrentfunction() << " ";
+                		outFileBuffer3 << it->second->getoperations() << endl;
 			}
 		}
 		outFileBuffer3.close();
