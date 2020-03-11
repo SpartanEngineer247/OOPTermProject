@@ -1,9 +1,12 @@
 #pragma once
 
 #include<string>
+#include<thread>
 #include "User_Database.h"
 #include "Users.h"
+#include "Timer.h"
 #include<iostream>
+using namespace std;
 
 //Base class
 class Machine
@@ -13,6 +16,7 @@ protected:
 	bool status;	//availability of machine - if false, machine is available to use
 	//setting to the 'minutes of operation' the machine is operating with right now. Is -1 if the machine is not operating, -2 if broken
 	int currentfunction;
+	int time;
 public:
 	//default constructor
 	Machine()
@@ -20,13 +24,15 @@ public:
 		name = "NA";
 		status = false;
 		currentfunction = -1;
+		time = 0;
 	}
 	//preferred constructor - the inputs are ideally taken from file information
-	Machine(string newname, bool currentstatus, int newop)
+	Machine(string newname, bool currentstatus, int newop, int newtime)
 	{
 		name = newname;
 		status = currentstatus;
 		currentfunction = newop;
+		time = newtime;
 	}
 
 	//getters
@@ -37,6 +43,10 @@ public:
 	bool getstatus()
 	{
 		return status;
+	}
+	int getoperations()
+	{
+		return time;
 	}
 
 	int getcurrentfunction()
@@ -52,6 +62,12 @@ public:
 
 	//abstract function, should print out the operational information of the machine
 	virtual void printoperation() = 0;
+
+
+	void starttimer(int s, string machinename)
+	{
+		auto a = async(timer, s, machinename);
+	}
 };
 
 class WashingMachine : public Machine
@@ -62,7 +78,7 @@ private:
 public:
 	//constructors - pretty self explanatory
 	WashingMachine() :Machine() { currentfunction = -1; }
-	WashingMachine(string inname, bool currentstatus, int currentsetting) :Machine(inname, currentstatus, currentsetting){}
+	WashingMachine(string inname, bool currentstatus, int currentsetting, int newtime) :Machine(inname, currentstatus, currentsetting, newtime){}
 
 	//change status now depends on which setting the machine is set to... -1 means its empty and available, anything else
 	//and it is currently in operation
@@ -110,7 +126,7 @@ private:
 public:
 	//constructors, easy enough
 	DryingMachine() :Machine() { currentfunction = -1; needcleaning = true; }
-	DryingMachine(string inname, bool currentstatus, int currentsetting) :Machine(inname, currentstatus, currentsetting)
+	DryingMachine(string inname, bool currentstatus, int currentsetting, int newtime) :Machine(inname, currentstatus, currentsetting, newtime)
 	{
 		currentfunction = currentsetting;
 		needcleaning = true;
