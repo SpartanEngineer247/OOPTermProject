@@ -1,6 +1,10 @@
 #pragma once
 
-#include<string>
+#include <string>
+#include <future>
+#include <thread>
+#include <chrono>
+#include "Timer.h"
 
 using namespace std;
 
@@ -10,7 +14,6 @@ private:
     string NetID; //technically a redundant data, but placed here anyway for logical consistency
     string password;
     bool status;
-    double operationTime;
 
 public:
     User()
@@ -18,21 +21,18 @@ public:
         NetID = "NA";
         password = "NA";
         status = false;
-        operationTime = 0.0;
     }
     User(string inputNetID, string inputpassword)
     {
         NetID = inputNetID;
         password = inputpassword;
         status = false;
-        operationTime = 0.0;
     }
-    User(string inputNetID, string inputpassword, bool newstatus, double newtime)
+    User(string inputNetID, string inputpassword, bool newstatus)
     {
         NetID = inputNetID;
         password = inputpassword;
         status = newstatus;
-        operationTime = newtime;
     }
 
     ~User()
@@ -40,7 +40,6 @@ public:
         NetID = "-1";
         password = "-1";
         status = false;
-        operationTime = 0.0;
     }
 
     string getPass()
@@ -53,12 +52,7 @@ public:
         return status;
     }
 
-    double getOperations()
-    {
-        return operationTime;
-    }
-
-    bool checkPassword(string &passwordtry)
+    bool checkPassword(string& passwordtry)
     {
         if (passwordtry == password)
         {
@@ -66,5 +60,4 @@ public:
         }
         else { return false; }
     }
-
 };
