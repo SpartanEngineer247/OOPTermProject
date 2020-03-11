@@ -1,5 +1,12 @@
 //
 //  main.cpp
+//  term project
+//
+//  Created by Raushan Khullar on 3/11/20.
+//  Copyright © 2020 Raushan Khullar. All rights reserved.
+//
+//
+//  main.cpp
 //  Project
 //
 //  Created by Raushan Khullar on 2/22/20.
@@ -20,7 +27,7 @@
 //
 #include<string>
 #include<vector>
-#include"UserTable.h"
+#include"Users_Database.h"
 using namespace std;
 #include<iostream>
 
@@ -34,7 +41,7 @@ int main()
         cout<<"2.Login "<<endl;
         cout<<"3.Exit"<<endl;
         
-        Users_Database::logout();
+    //  Users_Database::logout();
         
         int choice;
         
@@ -101,7 +108,11 @@ int main()
                     {
                         flag=true;
                         cout<<"Washing machines"<<endl;
-                        //  cout<<CheckWashingMachineStatus("A1A");
+                        //  cout<<"Washing machine 1: "<<CheckWashingMachineStatus("A1A");
+                      //   cout<<"Washing machine 2: "<<CheckWashingMachineStatus("A1A");
+                      //   cout<<"Washing machine 3: "<<CheckWashingMachineStatus("A1A");
+                     //    cout<<"Washing machine 4: "<<CheckWashingMachineStatus("A1A");
+                      //   cout<<"Washing machine 5: "<<CheckWashingMachineStatus("A1A");
                         cout<<"Drying machines"<<endl;
                         //   cout<<CheckDryingMachineStatus("A1A");
                     }
