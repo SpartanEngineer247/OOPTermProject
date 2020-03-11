@@ -5,6 +5,14 @@
 //  Created by Raushan Khullar on 3/11/20.
 //  Copyright © 2020 Raushan Khullar. All rights reserved.
 //
+
+//
+//  main.cpp
+//  term project
+//
+//  Created by Raushan Khullar on 3/11/20.
+//  Copyright © 2020 Raushan Khullar. All rights reserved.
+//
 //
 //  main.cpp
 //  Project
@@ -18,6 +26,7 @@
 #include <functional>
 #include <mutex>
 #include <condition_variable>
+#include"Users_Database.h"
 //
 //  main.cpp
 //  Project
@@ -32,134 +41,434 @@ using namespace std;
 #include<iostream>
 
 int main()
-{ int choice=0;
+
+{
+    Users_Database *s1;
+    s1 = Users_Database::GetInstance();int choice=0;
     do
     {
         
         // displaying menu
-        cout<<"1.Create new user"<<endl;
-        cout<<"2.Login "<<endl;
-        cout<<"3.Exit"<<endl;
         
-    //  Users_Database::logout();
+        cout<<"**************************************\n";
+        cout<<" WELCOME TO THE LAUNDRY BOOKING APP\n";
+        cout<<"**************************************\n";
+        cout<<endl;
+        cout<<" 1)  Create new user"<<endl;
+        cout<<" 2)  Login "<<endl;
+        cout<<" 3)  Exit"<<endl;
+        cout<<endl;
+        
+        // Users_Database::logout();
         
         int choice;
         
-        cout<<"Enter 1 to create new user.\nEnter 2 to login.\nEnter 3 to exit "<<endl;
+        cout<<" 1- To Login\n\n 2-To login.\n\n 3-To exit "<<endl;
         // accepting users choice
-        cin>>choice;
+        while(! (cin>>choice))
+        {
+            cout<<" Invalid Input!\n";
+            cout<<" Enter a number\n";
+            cin.clear();
+            
+        }
         
-        // checking choices
-        Users_Database *s1;
-            s1 = Users_Database::GetInstance();
-            //first time calling, will successfully create the instance
-    
+        
+        
         string NetID; string Password;
         if (choice==1)
         {
-            cout<<"enter NetID\n";
+            cout<<" Enter NetID\n";
             cin>>NetID;
-            cout<<" enter password\n";
+            cout<<" Enter password\n";
             cin>>Password;
             
             s1->CreateNewUser( NetID , Password);
             //
-            cout<<" Please login now\n";
-            cout<<"enter NetID\n";
+            cout<<" Please login now:\n";
+            cout<<" Enter NetID\n";
             cin>>NetID;
-            cout<<" enter password\n";
+            cout<<" Enter password\n";
             cin>>Password;
-              if(s1->Login( NetID, Password)==true)
-             {
-            bool flag1=true;
-            int building_num2;
-            do
+            if(s1->Login( NetID,  Password)==true)
             {
-                flag1=true;
-                cout<<"1. A1"<<endl;
-               // cout<<"2. A2"<<endl;
-              //  cout<<"3. A5"<<endl;
-              //  cout<<"4. A6"<<endl;
-                cout<<"0. go back to previous page"<<endl;
-                
-                int building_num=0;
-                cin>>building_num;
-                
-                //int building_num2;
-                if ( building_num==0)
-                    
-                {
-                    break;
-                }
-                
-                
-                else if ( building_num==1)
-                    
-                {
-                    bool flag=false;
-                    while(flag==false)
-                    {
-                    cout<<"1.A1A"<<endl;
-                   // cout<<"2.A1B"<<endl;
-                  //  cout<<"3.A1C"<<endl;
-                    cout<<"0.previous page"<<endl;
-                    cin>>building_num2;
-                    if (building_num2==1)
-                    {
-                        flag=true;
-                        cout<<"Washing machines"<<endl;
-                        //  cout<<"Washing machine 1: "<<CheckWashingMachineStatus("A1A");
-                      //   cout<<"Washing machine 2: "<<CheckWashingMachineStatus("A1A");
-                      //   cout<<"Washing machine 3: "<<CheckWashingMachineStatus("A1A");
-                     //    cout<<"Washing machine 4: "<<CheckWashingMachineStatus("A1A");
-                      //   cout<<"Washing machine 5: "<<CheckWashingMachineStatus("A1A");
-                        cout<<"Drying machines"<<endl;
-                        //   cout<<CheckDryingMachineStatus("A1A");
-                    }
-                        else if(building_num2==0)
-                            break;
-                    else
-                    {
-                        flag=false;
-                        cout<<"invalid input\n";
-                    }
-                }
-                }
-                else
-                { flag1=false;
-                    cout<<"invalid entry please try again"<<endl;
-                }
-                
-                
-            }
-            while(flag1==false);
-            
-            
-            
-            
-            
-            
-            
-        }
-        }
-        else if (choice==2)
-        {
-            cout<<"enter NetID\n";
-                       cin>>NetID;
-                       cout<<" enter password\n";
-                       cin>>Password;
-             if(s1->Login( NetID,  Password)==true)
-             {
-            bool flag2=true;
+                bool flag2=true;
                 int building_num2;
                 do
                 {
                     flag2=true;
-                    cout<<"1. A1"<<endl;
-                 //   cout<<"2. A2"<<endl;
-                  //  cout<<"3. A5"<<endl;
-                  //  cout<<"4. A6"<<endl;
-                    cout<<"0. go back to previous page"<<endl;
+                    cout<<" 0)  Go back to previous page"<<endl;
+                    cout<<" 1)  A1"<<endl;
+                    //   cout<<"2. A2"<<endl;
+                    //  cout<<"3. A5"<<endl;
+                    //  cout<<"4. A6"<<endl;
+                    
+                    
+                    int building_num=0;
+                    cin>>building_num;
+                    
+                    //int building_num2;
+                    if ( building_num==0)
+                        
+                    {
+                        break;
+                    }
+                    else if ( building_num==1)
+                        
+                    {flag2=true;
+                        bool flag=false;
+                        while(flag==false)
+                        {
+                            cout<<" 0)   Previous page"<<endl;
+                            cout<<" 1)   A1A"<<endl;
+                            // cout<<"2.A1B"<<endl;
+                            //  cout<<"3.A1C"<<endl;
+                            
+                            cin>>building_num2;
+                            if (building_num2==0)
+                                
+                            {flag=true;
+                                cout<<"this is true\n";
+                                
+                            }
+                            if (building_num2==1)
+                            {
+                                flag=true;
+                                bool flag3=false;
+                                while(flag3==false)
+                                {
+                                    cout<<" Washing machines"<<endl;
+                                    cout<<" 1)   Washing machine 1: ";
+                                    if(s1->checkwashingmachinestatus("wm1")==0)
+                                        cout<<" Available\n";
+                                    else
+                                        cout<<" Occupied\n";
+                                    cout<<" 2)   Washing machine 2: ";
+                                    if(s1->checkwashingmachinestatus("wm2")==0)
+                                        cout<<" Available\n";
+                                    else
+                                        cout<<" Occupied\n";
+                                    cout<<" 3)   Washing machine 3: ";
+                                    if(s1->checkwashingmachinestatus("wm3")==0)
+                                        cout<<" Available\n";
+                                    else
+                                        cout<<" Occupied\n";
+                                    cout<<" 4)   Washing machine 4: ";
+                                    if(s1->checkwashingmachinestatus("wm4")==0)
+                                        cout<<" Available\n";
+                                    else
+                                        cout<<" Occupied\n";
+                                    cout<<" 5)   Washing machine 5: ";
+                                    if(s1->checkwashingmachinestatus("wm5")==0)
+                                        cout<<" Available\n";
+                                    else
+                                        cout<<" Occupied\n";
+                                    
+                                    
+                                    
+                                    cout<<" Drying machines"<<endl;
+                                    cout<<" 6)  Drying Machine 1: ";
+                                    if(s1->checkdryingmachinestatus("dm1")==0)
+                                        cout<<" Available\n";
+                                    else
+                                        cout<<" Occupied\n";
+                                    cout<<" 7)  Drying Machine 2: ";
+                                    if(s1->checkdryingmachinestatus("dm2")==0)
+                                        cout<<" Available\n";
+                                    else
+                                        cout<<" Occupied\n";
+                                    cout<<" 8)  Drying Machine 3: ";
+                                    if(s1->checkdryingmachinestatus("dm3")==0)
+                                        cout<<" Available\n";
+                                    else
+                                        cout<<" Occupied\n";
+                                    cout<<" 9)  Drying Machine 4: ";
+                                    if(s1->checkdryingmachinestatus("dm4")==0)
+                                        cout<<" Available\n";
+                                    else
+                                        cout<<" Occupied\n";
+                                    cout<<" 10) Drying Machine 5: ";
+                                    if(s1->checkdryingmachinestatus("dm5")==0)
+                                        cout<<" Available\n";
+                                    else
+                                        cout<<" Occupied\n";
+                                    
+                                    cout<<endl;
+                                    cout<<" Please enter 1-5 for a washing machine, 6-10 for a dryer\n";
+                                    int num=NULL;
+                                    cin>>num;
+                                    if (num==1&& s1->checkwashingmachinestatus("wm1")==false)
+                                    {
+                                        flag2=true;
+                                        bool chk=false;
+                                        while (chk==false)
+                                        {
+                                            cout<<" Enter Mode Number (1-5) \n";
+                                            int mode=NULL;
+                                            cin>>mode;
+                                            if (mode>0&&mode<6)
+                                            {
+                                                flag3=true;
+                                                s1->changewashingmachinestatus("wm1",mode);
+                                            }
+                                            else
+                                                cout<<" Invalid input , please try again"<<endl;
+                                        }
+                                    }
+                                    else if(s1->checkwashingmachinestatus("wm1")==true)
+                                    {cout<<" Machine in use!!\n ";
+                                        continue;
+                                    }
+                                    
+                                    if (num==2&& s1->checkwashingmachinestatus("wm2")==false)
+                                    {
+                                        flag2=true;
+                                        bool chk=false;
+                                        while (chk==false)
+                                        {
+                                            cout<<" Enter Mode Number (1-5) \n";
+                                            int mode=NULL;
+                                            cin>>mode;
+                                            if (mode>0&&mode<6)
+                                            {
+                                                flag3=true;
+                                                s1->changewashingmachinestatus("wm2",mode);
+                                            }
+                                            else
+                                                cout<<" Invalid input , please try again"<<endl;
+                                        }
+                                    }
+                                    else if(s1->checkwashingmachinestatus("wm2")==true)
+                                    {cout<<" Machine in use!!\n ";
+                                        continue;
+                                    }
+                                    if (num==3&& s1->checkwashingmachinestatus("wm3")==false)
+                                    {
+                                        flag2=true;
+                                        bool chk=false;
+                                        while (chk==false)
+                                        {
+                                            cout<<" Enter Mode Number (1-5) \n";
+                                            int mode=NULL;
+                                            cin>>mode;
+                                            if (mode>0&&mode<6)
+                                            {
+                                                flag3=true;
+                                                s1->changewashingmachinestatus("wm3",mode);
+                                            }
+                                            else
+                                                cout<<" Invalid input , please try again"<<endl;
+                                        }
+                                    }
+                                    else if(s1->checkwashingmachinestatus("wm3")==true)
+                                    {cout<<" Machine in use!!\n ";
+                                        continue;
+                                    }
+                                    if (num==4&& s1->checkwashingmachinestatus("wm4")==false)
+                                    {
+                                        flag2=true;
+                                        bool chk=false;
+                                        while (chk==false)
+                                        {
+                                            cout<<" Enter Mode Number (1-5) \n";
+                                            int mode=NULL;
+                                            cin>>mode;
+                                            if (mode>0&&mode<6)
+                                            {
+                                                flag3=true;
+                                                s1->changewashingmachinestatus("wm4",mode);
+                                            }
+                                            else
+                                                cout<<" Invalid input , please try again"<<endl;
+                                        }
+                                    }
+                                    else if(s1->checkwashingmachinestatus("wm4")==true)
+                                    {cout<<" Machine in use!!\n ";
+                                        continue;
+                                    }
+                                    if (num==5&& s1->checkwashingmachinestatus("wm5")==false)
+                                    {
+                                        flag2=true;
+                                        bool chk=false;
+                                        while (chk==false)
+                                        {
+                                            cout<<" Enter Mode Number (1-5) \n";
+                                            int mode=NULL;
+                                            cin>>mode;
+                                            if (mode>0&&mode<6)
+                                            {
+                                                flag3=true;
+                                                s1->changewashingmachinestatus("wm5",mode);
+                                            }
+                                            else
+                                                cout<<" Invalid input , please try again"<<endl;
+                                        }
+                                    }
+                                    else if(s1->checkwashingmachinestatus("wm5")==true)
+                                    {cout<<" Machine in use!!\n ";
+                                        continue;
+                                    }
+                                    if (num==1&& s1->checkdryingmachinestatus("dm1")==false)
+                                    {
+                                        flag2=true;
+                                        bool chk=false;
+                                        while (chk==false)
+                                        {
+                                            cout<<" Enter Mode Number (1-5) \n";
+                                            int mode=NULL;
+                                            cin>>mode;
+                                            if (mode>0&&mode<6)
+                                            {
+                                                flag3=true;
+                                                s1->changedryingmachinestatus("dm1",mode);
+                                            }
+                                            else
+                                                cout<<" Invalid input , please try again"<<endl;
+                                        }
+                                    }
+                                    else if(s1->checkdryingmachinestatus("dm1")==true)
+                                    {cout<<" Machine in use!!\n ";
+                                        continue;
+                                    }
+                                    if (num==2&& s1->checkdryingmachinestatus("dm2")==false)
+                                    {
+                                        flag2=true;
+                                        bool chk=false;
+                                        while (chk==false)
+                                        {
+                                            cout<<" Enter Mode Number (1-5) \n";
+                                            int mode=NULL;
+                                            cin>>mode;
+                                            if (mode>0&&mode<6)
+                                            {
+                                                flag3=true;
+                                                s1->changedryingmachinestatus("dm2",mode);
+                                            }
+                                            else
+                                                cout<<" Invalid input , please try again"<<endl;
+                                        }
+                                    }
+                                    else if(s1->checkdryingmachinestatus("dm2")==true)
+                                    {cout<<" Machine in use!!\n ";
+                                        continue;
+                                    }
+                                    if (num==3&& s1->checkdryingmachinestatus("dm3")==false)
+                                    {
+                                        flag2=true;
+                                        bool chk=false;
+                                        while (chk==false)
+                                        {
+                                            cout<<" Enter Mode Number (1-5) \n";
+                                            int mode=NULL;
+                                            cin>>mode;
+                                            if (mode>0&&mode<6)
+                                            {
+                                                flag3=true;
+                                                s1->changedryingmachinestatus("dm3",mode);
+                                            }
+                                            else
+                                                cout<<" Invalid input , please try again"<<endl;
+                                        }
+                                    }
+                                    else if(s1->checkdryingmachinestatus("dm3")==true)
+                                    {cout<<" Machine in use!!\n ";
+                                        continue;
+                                    }
+                                    if (num==4&& s1->checkdryingmachinestatus("dm4")==false)
+                                    {
+                                        flag2=true;
+                                        bool chk=false;
+                                        while (chk==false)
+                                        {
+                                            cout<<" Enter Mode Number (1-5) \n";
+                                            int mode=NULL;
+                                            cin>>mode;
+                                            if (mode>0&&mode<6)
+                                            {
+                                                flag3=false;
+                                                s1->changedryingmachinestatus("dm4",mode);
+                                            }
+                                            else
+                                                cout<<" Invalid input , please try again"<<endl;
+                                        }
+                                    }
+                                    else if(s1->checkdryingmachinestatus("dm4")==true)
+                                    {cout<<" Machine in use!!\n ";
+                                        continue;
+                                    }
+                                    if (num==5&& s1->checkdryingmachinestatus("dm5")==false)
+                                    {
+                                        flag2=true;
+                                        bool chk=false;
+                                        while (chk==false)
+                                        {
+                                            cout<<" Enter Mode Number (1-5) \n";
+                                            int mode=NULL;
+                                            cin>>mode;
+                                            if (mode>0&&mode<6)
+                                            {
+                                                flag3=true;
+                                                s1->changedryingmachinestatus("dm5",mode);
+                                            }
+                                            else
+                                                cout<<" Invalid input , please try again"<<endl;
+                                        }
+                                    }
+                                    else if(s1->checkdryingmachinestatus("dm5")==true)
+                                    {cout<<" Machine in use!!\n ";
+                                        continue;
+                                    }
+                                    
+                                    
+                                    
+                                }
+                            }
+                         //   else if (building_num2==0)
+                            //{
+                        //        cout<<"going yo break\n";
+                      //          break;
+                        //
+                       //     }
+                            
+                            else
+                            {
+                                flag=false;
+                                cout<<" Invalid input! Please try again\n";
+                            }
+                        }
+                        cout<<"hello from here";
+                    }
+                    else
+                    { flag2=false;
+                        cout<<" Invalid entry! Please try again"<<endl;
+                    }
+                    
+                    
+                }
+                while(flag2==false);
+            }
+        }
+        
+        
+        else if (choice==2)
+        {
+            cout<<" Enter NetID\n";
+            cin>>NetID;
+            cout<<" Enter password\n";
+            cin>>Password;
+            if(s1->Login( NetID,  Password)==true)
+            {
+                bool flag2=true;
+                int building_num2;
+                do
+                {
+                    flag2=true;
+                    cout<<" 0)    Go back to previous page"<<endl;
+                    cout<<" 1)  A1"<<endl;
+                    //   cout<<"2. A2"<<endl;
+                    //  cout<<"3. A5"<<endl;
+                    //  cout<<"4. A6"<<endl;
+                    
                     
                     int building_num=0;
                     cin>>building_num;
@@ -176,31 +485,316 @@ int main()
                         bool flag=false;
                         while(flag==false)
                         {
-                        cout<<"1.A1A"<<endl;
-                       // cout<<"2.A1B"<<endl;
-                      //  cout<<"3.A1C"<<endl;
-                        cout<<"0.previous page"<<endl;
-                        cin>>building_num2;
-                        if (building_num2==1)
-                        {
-                            flag=true;
-                            cout<<"Washing machines"<<endl;
-                            //  cout<<CheckWashingMachineStatus("A1A");
-                            cout<<"Drying machines"<<endl;
-                            //   cout<<CheckDryingMachineStatus("A1A");
-                        }
+                            cout<<"0)   Previous page"<<endl;
+                            cout<<" 1)   A1A"<<endl;
+                            // cout<<"2.A1B"<<endl;
+                            //  cout<<"3.A1C"<<endl;
+                            
+                            cin>>building_num2;
+                            if (building_num2==1)
+                            {
+                                flag=true;
+                                bool flag3=false;
+                                while(flag3==false)
+                                {
+                                    cout<<" Washing machines"<<endl;
+                                    cout<<" 1)   Washing machine 1: ";
+                                    if(s1->checkwashingmachinestatus("wm1")==0)
+                                        cout<<" Available\n";
+                                    else
+                                        cout<<" Occupied\n";
+                                    cout<<" 2)   Washing machine 2: ";
+                                    if(s1->checkwashingmachinestatus("wm2")==0)
+                                        cout<<" Available\n";
+                                    else
+                                        cout<<" Occupied\n";
+                                    cout<<" 3)   Washing machine 3: ";
+                                    if(s1->checkwashingmachinestatus("wm3")==0)
+                                        cout<<" Available\n";
+                                    else
+                                        cout<<" Occupied\n";
+                                    cout<<" 4)   Washing machine 4: ";
+                                    if(s1->checkwashingmachinestatus("wm4")==0)
+                                        cout<<" Available\n";
+                                    else
+                                        cout<<" Occupied\n";
+                                    cout<<" 5)   Washing machine 5: ";
+                                    if(s1->checkwashingmachinestatus("wm5")==0)
+                                        cout<<" Available\n";
+                                    else
+                                        cout<<" Occupied\n";
+                                    
+                                    
+                                    
+                                    cout<<" Drying machines"<<endl;
+                                    cout<<" 6)  Drying Machine 1: ";
+                                    if(s1->checkdryingmachinestatus("dm1")==0)
+                                        cout<<" Available\n";
+                                    else
+                                        cout<<" Occupied\n";
+                                    cout<<" 7)  Drying Machine 2: ";
+                                    if(s1->checkdryingmachinestatus("dm2")==0)
+                                        cout<<" Available\n";
+                                    else
+                                        cout<<" Occupied\n";
+                                    cout<<" 8)  Drying Machine 3: ";
+                                    if(s1->checkdryingmachinestatus("dm3")==0)
+                                        cout<<" Available\n";
+                                    else
+                                        cout<<" Occupied\n";
+                                    cout<<" 9)  Drying Machine 4: ";
+                                    if(s1->checkdryingmachinestatus("dm4")==0)
+                                        cout<<" Available\n";
+                                    else
+                                        cout<<" Occupied\n";
+                                    cout<<" 10) Drying Machine 5: ";
+                                    if(s1->checkdryingmachinestatus("dm5")==0)
+                                        cout<<" Available\n";
+                                    else
+                                        cout<<" Occupied\n";
+                                    
+                                    cout<<endl;
+                                    cout<<" Please enter 1-5 for a washing machine, 6-10 for a dryer\n";
+                                    int num=NULL;
+                                    cin>>num;
+                                    if (num==1&& s1->checkwashingmachinestatus("wm1")==false)
+                                    {
+                                        flag2=true;
+                                        bool chk=false;
+                                        while (chk==false)
+                                        {
+                                            cout<<" Enter Mode Number (1-5) \n";
+                                            int mode=NULL;
+                                            cin>>mode;
+                                            if (mode>0&&mode<6)
+                                            {
+                                                flag3=true;
+                                                s1->changewashingmachinestatus("wm1",mode);
+                                            }
+                                            else
+                                                cout<<" Invalid input , please try again"<<endl;
+                                        }
+                                    }
+                                    else if(s1->checkwashingmachinestatus("wm1")==true)
+                                    {cout<<" Machine in use!!\n ";
+                                        continue;
+                                    }
+                                    
+                                    if (num==2&& s1->checkwashingmachinestatus("wm2")==false)
+                                    {
+                                        flag2=true;
+                                        bool chk=false;
+                                        while (chk==false)
+                                        {
+                                            cout<<" Enter Mode Number (1-5) \n";
+                                            int mode=NULL;
+                                            cin>>mode;
+                                            if (mode>0&&mode<6)
+                                            {
+                                                flag3=true;
+                                                s1->changewashingmachinestatus("wm2",mode);
+                                            }
+                                            else
+                                                cout<<" Invalid input , please try again"<<endl;
+                                        }
+                                    }
+                                    else if(s1->checkwashingmachinestatus("wm2")==true)
+                                    {cout<<" Machine in use!!\n ";
+                                        continue;
+                                    }
+                                    if (num==3&& s1->checkwashingmachinestatus("wm3")==false)
+                                    {
+                                        flag2=true;
+                                        bool chk=false;
+                                        while (chk==false)
+                                        {
+                                            cout<<" Enter Mode Number (1-5) \n";
+                                            int mode=NULL;
+                                            cin>>mode;
+                                            if (mode>0&&mode<6)
+                                            {
+                                                flag3=true;
+                                                s1->changewashingmachinestatus("wm3",mode);
+                                            }
+                                            else
+                                                cout<<" Invalid input , please try again"<<endl;
+                                        }
+                                    }
+                                    else if(s1->checkwashingmachinestatus("wm3")==true)
+                                    {cout<<" Machine in use!!\n ";
+                                        continue;
+                                    }
+                                    if (num==4&& s1->checkwashingmachinestatus("wm4")==false)
+                                    {
+                                        flag2=true;
+                                        bool chk=false;
+                                        while (chk==false)
+                                        {
+                                            cout<<" Enter Mode Number (1-5) \n";
+                                            int mode=NULL;
+                                            cin>>mode;
+                                            if (mode>0&&mode<6)
+                                            {
+                                                flag3=true;
+                                                s1->changewashingmachinestatus("wm4",mode);
+                                            }
+                                            else
+                                                cout<<" Invalid input , please try again"<<endl;
+                                        }
+                                    }
+                                    else if(s1->checkwashingmachinestatus("wm4")==true)
+                                    {cout<<" Machine in use!!\n ";
+                                        continue;
+                                    }
+                                    if (num==5&& s1->checkwashingmachinestatus("wm5")==false)
+                                    {
+                                        flag2=true;
+                                        bool chk=false;
+                                        while (chk==false)
+                                        {
+                                            cout<<" Enter Mode Number (1-5) \n";
+                                            int mode=NULL;
+                                            cin>>mode;
+                                            if (mode>0&&mode<6)
+                                            {
+                                                flag3=true;
+                                                s1->changewashingmachinestatus("wm5",mode);
+                                            }
+                                            else
+                                                cout<<" Invalid input , please try again"<<endl;
+                                        }
+                                    }
+                                    else if(s1->checkwashingmachinestatus("wm5")==true)
+                                    {cout<<" Machine in use!!\n ";
+                                        continue;
+                                    }
+                                    if (num==1&& s1->checkdryingmachinestatus("dm1")==false)
+                                    {
+                                        flag2=true;
+                                        bool chk=false;
+                                        while (chk==false)
+                                        {
+                                            cout<<" Enter Mode Number (1-5) \n";
+                                            int mode=NULL;
+                                            cin>>mode;
+                                            if (mode>0&&mode<6)
+                                            {
+                                                flag3=true;
+                                                s1->changedryingmachinestatus("dm1",mode);
+                                            }
+                                            else
+                                                cout<<" Invalid input , please try again"<<endl;
+                                        }
+                                    }
+                                    else if(s1->checkdryingmachinestatus("dm1")==true)
+                                    {cout<<" Machine in use!!\n ";
+                                        continue;
+                                    }
+                                    if (num==2&& s1->checkdryingmachinestatus("dm2")==false)
+                                    {
+                                        flag2=true;
+                                        bool chk=false;
+                                        while (chk==false)
+                                        {
+                                            cout<<" Enter Mode Number (1-5) \n";
+                                            int mode=NULL;
+                                            cin>>mode;
+                                            if (mode>0&&mode<6)
+                                            {
+                                                flag3=true;
+                                                s1->changedryingmachinestatus("dm2",mode);
+                                            }
+                                            else
+                                                cout<<" Invalid input , please try again"<<endl;
+                                        }
+                                    }
+                                    else if(s1->checkdryingmachinestatus("dm2")==true)
+                                    {cout<<" Machine in use!!\n ";
+                                        continue;
+                                    }
+                                    if (num==3&& s1->checkdryingmachinestatus("dm3")==false)
+                                    {
+                                        flag2=true;
+                                        bool chk=false;
+                                        while (chk==false)
+                                        {
+                                            cout<<" Enter Mode Number (1-5) \n";
+                                            int mode=NULL;
+                                            cin>>mode;
+                                            if (mode>0&&mode<6)
+                                            {
+                                                flag3=true;
+                                                s1->changedryingmachinestatus("dm3",mode);
+                                            }
+                                            else
+                                                cout<<" Invalid input , please try again"<<endl;
+                                        }
+                                    }
+                                    else if(s1->checkdryingmachinestatus("dm3")==true)
+                                    {cout<<" Machine in use!!\n ";
+                                        continue;
+                                    }
+                                    if (num==4&& s1->checkdryingmachinestatus("dm4")==false)
+                                    {
+                                        flag2=true;
+                                        bool chk=false;
+                                        while (chk==false)
+                                        {
+                                            cout<<" Enter Mode Number (1-5) \n";
+                                            int mode=NULL;
+                                            cin>>mode;
+                                            if (mode>0&&mode<6)
+                                            {
+                                                flag3=false;
+                                                s1->changedryingmachinestatus("dm4",mode);
+                                            }
+                                            else
+                                                cout<<" Invalid input , please try again"<<endl;
+                                        }
+                                    }
+                                    else if(s1->checkdryingmachinestatus("dm4")==true)
+                                    {cout<<" Machine in use!!\n ";
+                                        continue;
+                                    }
+                                    if (num==5&& s1->checkdryingmachinestatus("dm5")==false)
+                                    {
+                                        flag2=true;
+                                        bool chk=false;
+                                        while (chk==false)
+                                        {
+                                            cout<<" Enter Mode Number (1-5) \n";
+                                            int mode=NULL;
+                                            cin>>mode;
+                                            if (mode>0&&mode<6)
+                                            {
+                                                flag3=true;
+                                                s1->changedryingmachinestatus("dm5",mode);
+                                            }
+                                            else
+                                                cout<<" Invalid input , please try again"<<endl;
+                                        }
+                                    }
+                                    else if(s1->checkdryingmachinestatus("dm5")==true)
+                                    {cout<<" Machine in use!!\n ";
+                                        continue;
+                                    }
+                                    
+                                    
+                                    
+                                }
+                            }
                             else if (building_num2==0)
                                 break;
                             else
                             {
                                 flag=false;
-                                cout<<"invalid input please try again\n";
+                                cout<<" Invalid input! Please try again\n";
                             }
-                    }
+                        }
                     }
                     else
                     { flag2=false;
-                        cout<<"invalid entry please try again"<<endl;
+                        cout<<" Invalid entry! Please try again"<<endl;
                     }
                     
                     
@@ -208,11 +802,11 @@ int main()
                 while(flag2==false);
             }
         }
-                
         
-            
         
-         
+        
+        
+        
         
         else if (choice==3)
         {
@@ -223,7 +817,7 @@ int main()
         else
         {
             
-            cout<<"invalid input, please try again"<<endl;
+            cout<<" Invalid input!, Please try again"<<endl;
             continue;
         }
         
@@ -231,6 +825,8 @@ int main()
     
     while(choice!=3);
 }
+
+
 
 
 
