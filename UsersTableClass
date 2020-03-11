@@ -217,6 +217,38 @@ public:
 	{
 		currentuser = "";
 	}
+
+	bool checkwashingmachinestatus(string machinename)
+	{
+		map<string, WashingMachine*>::iterator it;
+		it = WashingTable.find(machinename);
+		return (it->second->getstatus());
+	}
+
+	bool checkdryingmachinestatus(string machinename)
+	{
+		map<string, DryingMachine*>::iterator it;
+		it = DryingTable.find(machinename);
+		return (it->second->getstatus());
+	}
+
+	void changewashingmachinestatus(string machinename, int newsetting)
+	{
+		map<string, WashingMachine*>::iterator it;
+		it = WashingTable.find(machinename);
+		it->second->changestatus(newsetting);
+		cout << "You have chosen option " << newsetting << ". The machine is now in use.";
+		cout << "Time left: " << it->second->getminutes(newsetting) << " minutes.";
+	}
+
+	void changedryingmachinestatus(string machinename, int newsetting)
+	{
+		map<string, DryingMachine*>::iterator it;
+		it = DryingTable.find(machinename);
+		it->second->changestatus(newsetting);
+		cout << "You have chosen option " << newsetting << ". The machine is now in use.";
+		cout << "Time left: " << it->second->getminutes(newsetting) << " minutes.";
+	}
 };
 
 Users_Database* Users_Database::instance = nullptr;
