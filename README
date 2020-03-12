@@ -1,0 +1,16 @@
+Object Oriented Programming Term Project, March 2020
+
+RAUSHAN KHULLAR (rks3415@nyu.edu)
+EDDIE HAN (esh376@nyu.edu)
+
+Place all files in the same directory so that the compiler can easily find them.
+Please use the provided memory files
+Please note that there is NO SECURITY MEASURES IMPLEMENTED in this program
+All passwords will be stored in plaintext, so please do NOT use your actual passwords
+
+**
+The program works fine on x-code, but may not work on some windows computers.
+This has been confirmed to be a HEADER issue, and the issue is exclusive to some versions of Visual Studio.
+If faced with this issue, please use the provided
+"MASSIVESOURCE.CPP" to attempt to run the code, with no header files but using provided memory files
+**
