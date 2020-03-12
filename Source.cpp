@@ -1015,4 +1015,6 @@ int main()
         }
     }
     while(choice!=3);
+    system("pause");
+    return(0);
 }
