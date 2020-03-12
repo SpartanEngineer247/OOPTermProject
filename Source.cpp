@@ -293,6 +293,7 @@ int main()
                                                 cin.ignore();
                                                 cin >> mode;
                                             }
+                                            //
                                             if (mode>0&&mode<6)
                                             {
                                                 chk=true;
