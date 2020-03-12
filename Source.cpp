@@ -1,25 +1,3 @@
-//
-//  main.cpp
-//  term project
-//
-//  Created by Raushan Khullar on 3/11/20.
-//  Copyright © 2020 Raushan Khullar. All rights reserved.
-//
-
-//
-//  main.cpp
-//  term project
-//
-//  Created by Raushan Khullar on 3/11/20.
-//  Copyright © 2020 Raushan Khullar. All rights reserved.
-//
-//
-//  main.cpp
-//  Project
-//
-//  Created by Raushan Khullar on 2/22/20.
-//  Copyright © 2020 Raushan Khullar. All rights reserved.
-//
 #include"Timer.h"
 #include <chrono>
 #include <thread>
@@ -28,13 +6,6 @@
 #include <condition_variable>
 #include"Users_Database.h"
 #include"stdlib.h"
-//
-//  main.cpp
-//  Project
-//
-//  Created by Raushan Khullar on 2/22/20.
-//  Copyright © 2020 Raushan Khullar. All rights reserved.
-//
 #include<string>
 #include<vector>
 #include"Users_Database.h"
@@ -48,7 +19,6 @@ int main()
     s1 = Users_Database::GetInstance();int choice=0;
     do
     {
-       
         // displaying menu
         
         cout<<"**************************************\n";
@@ -59,8 +29,6 @@ int main()
         cout<<" 2)  Login "<<endl;
         cout<<" 3)  Exit"<<endl;
         cout<<endl;
-        
-    
         
         int choice;
         
@@ -76,8 +44,6 @@ int main()
             cin.ignore();
             cin >> choice;
         }
-        
-        
         
         string NetID; string Password;
         if (choice==1)
@@ -106,9 +72,7 @@ int main()
                     flag2=true;
                     cout<<" 0)  Go back to previous page"<<endl;
                     cout<<" 1)  A1"<<endl;
-                   
-                    
-                    
+
                     int building_num=0;
                     cin>>building_num;
                     //validating input
@@ -132,8 +96,7 @@ int main()
                         while(flag==false)
                         {
                             cout<<" 1)   A1A"<<endl;
-                           
-                            
+
                             cin>>building_num2;
                             //validating input
                             while(!cin)
@@ -193,8 +156,6 @@ int main()
                                     else
                                         cout<<" Occupied\n\n";
                                     
-                                    
-                                    
                                     cout<<" Drying machines"<<endl;
                                     cout<<" 6)  Drying Machine 1: ";
                                     if(s1->checkdryingmachinestatus("DM1")==0)
@@ -228,7 +189,6 @@ int main()
                                     cin>>num;
                                     while(!cin)
                                     {
-                                        
                                         cout << "That was no integer! Please enter an integer:\n ";
                                         cin.clear();
                                         cin.ignore();
@@ -264,7 +224,6 @@ int main()
                                                 chk=true;
                                                 flag3=true;
                                                 s1->changewashingmachinestatus("WM1",mode);
-                                                
                                             }
                                             else
                                                 
@@ -287,7 +246,6 @@ int main()
                                             cin>>mode;
                                             while(!cin)
                                             {
-                                                
                                                 cout << "That was no integer! Please enter an integer:\n ";
                                                 cin.clear();
                                                 cin.ignore();
@@ -319,7 +277,6 @@ int main()
                                             cin>>mode;
                                             while(!cin)
                                             {
-                                                
                                                 cout << "That was no integer! Please enter an integer:\n ";
                                                 cin.clear();
                                                 cin.ignore();
@@ -350,7 +307,6 @@ int main()
                                             cin>>mode;
                                             while(!cin)
                                             {
-                                                
                                                 cout << "That was no integer! Please enter an integer:\n ";
                                                 cin.clear();
                                                 cin.ignore();
@@ -381,7 +337,6 @@ int main()
                                             cin>>mode;
                                             while(!cin)
                                             {
-                                                
                                                 cout << "That was no integer! Please enter an integer:\n ";
                                                 cin.clear();
                                                 cin.ignore();
@@ -412,7 +367,6 @@ int main()
                                             cin>>mode;
                                             while(!cin)
                                             {
-                                                
                                                 cout << "That was no integer! Please enter an integer:\n ";
                                                 cin.clear();
                                                 cin.ignore();
@@ -443,7 +397,6 @@ int main()
                                             cin>>mode;
                                             while(!cin)
                                             {
-                                                
                                                 cout << "That was no integer! Please enter an integer:\n ";
                                                 cin.clear();
                                                 cin.ignore();
@@ -474,7 +427,6 @@ int main()
                                             cin>>mode;
                                             while(!cin)
                                             {
-                                                
                                                 cout << "That was no integer! Please enter an integer:\n ";
                                                 cin.clear();
                                                 cin.ignore();
@@ -505,7 +457,6 @@ int main()
                                             cin>>mode;
                                             while(!cin)
                                             {
-                                                
                                                 cout << "That was no integer! Please enter an integer:\n ";
                                                 cin.clear();
                                                 cin.ignore();
@@ -536,7 +487,6 @@ int main()
                                             cin>>mode;
                                             while(!cin)
                                             {
-                                                
                                                 cout << "That was no integer! Please enter an integer:\n ";
                                                 cin.clear();
                                                 cin.ignore();
@@ -560,25 +510,19 @@ int main()
                                     {
                                         cout<<"invalid input\n";
                                     }
-                                    
-                                    
                                 }
                             }
-                            
                             else
                             {
                                 flag=false;
                                 cout<<" Invalid input! Please try again\n";
                             }
                         }
-                        
                     }
                     else
                     { flag2=false;
                         cout<<" Invalid entry! Please try again"<<endl;
                     }
-                    
-                    
                 }
                 while(flag2==false);
             }
@@ -601,10 +545,9 @@ int main()
                     flag2=true;
                     cout<<" 0)    Go back to previous page"<<endl;
                     cout<<" 1)  A1"<<endl;
-                    //   cout<<"2. A2"<<endl;
+                    //  cout<<"2. A2"<<endl;
                     //  cout<<"3. A5"<<endl;
                     //  cout<<"4. A6"<<endl;
-                    
                     
                     int building_num=0;
                     cin>>building_num;
@@ -615,6 +558,7 @@ int main()
                         cin.ignore();
                         cin >> building_num;
                     }
+                    
                     //int building_num2;
                     if ( building_num==0)
                         
@@ -629,7 +573,7 @@ int main()
                         {
                             
                             cout<<" 1)   A1A"<<endl;
-                            // cout<<"2.A1B"<<endl;
+                            //  cout<<"2.A1B"<<endl;
                             //  cout<<"3.A1C"<<endl;
                             
                             cin>>building_num2;
@@ -646,7 +590,6 @@ int main()
                                 bool flag3=false;
                                 while(flag3==false)
                                 {
-                                    
                                     cout<<" Washing machine program settings:\n";
                                     cout<<" Program 1: 10 minutes\n";
                                     cout<<" Program 2: 20 minutes\n";
@@ -689,8 +632,6 @@ int main()
                                     else
                                         cout<<" Occupied\n\n";
                                     
-                                    
-                                    
                                     cout<<" Drying machines"<<endl;
                                     cout<<" 6)  Drying Machine 1: ";
                                     if(s1->checkdryingmachinestatus("DM1")==0)
@@ -724,7 +665,6 @@ int main()
                                     cin>>num;
                                     while(!cin)
                                     {
-                                        
                                         cout << "That was no integer! Please enter an integer:\n ";
                                         cin.clear();
                                         cin.ignore();
@@ -749,7 +689,6 @@ int main()
                                             cin>>mode;
                                             while(!cin)
                                             {
-                                                
                                                 cout << "That was no integer! Please enter an integer:\n ";
                                                 cin.clear();
                                                 cin.ignore();
@@ -763,7 +702,6 @@ int main()
                                                 
                                             }
                                             else
-                                                
                                                 cout<<" Invalid input , please try again"<<endl;
                                         }
                                     }
@@ -783,7 +721,6 @@ int main()
                                             cin>>mode;
                                             while(!cin)
                                             {
-                                                
                                                 cout << "That was no integer! Please enter an integer:\n ";
                                                 cin.clear();
                                                 cin.ignore();
@@ -814,7 +751,6 @@ int main()
                                             cin>>mode;
                                             while(!cin)
                                             {
-                                                
                                                 cout << "That was no integer! Please enter an integer:\n ";
                                                 cin.clear();
                                                 cin.ignore();
@@ -845,7 +781,6 @@ int main()
                                             cin>>mode;
                                             while(!cin)
                                             {
-                                                
                                                 cout << "That was no integer! Please enter an integer:\n ";
                                                 cin.clear();
                                                 cin.ignore();
@@ -876,7 +811,6 @@ int main()
                                             cin>>mode;
                                             while(!cin)
                                             {
-                                                
                                                 cout << "That was no integer! Please enter an integer:\n ";
                                                 cin.clear();
                                                 cin.ignore();
@@ -907,7 +841,6 @@ int main()
                                             cin>>mode;
                                             while(!cin)
                                             {
-                                                
                                                 cout << "That was no integer! Please enter an integer:\n ";
                                                 cin.clear();
                                                 cin.ignore();
@@ -938,7 +871,6 @@ int main()
                                             cin>>mode;
                                             while(!cin)
                                             {
-                                                
                                                 cout << "That was no integer! Please enter an integer:\n ";
                                                 cin.clear();
                                                 cin.ignore();
@@ -969,7 +901,6 @@ int main()
                                             cin>>mode;
                                             while(!cin)
                                             {
-                                                
                                                 cout << "That was no integer! Please enter an integer:\n ";
                                                 cin.clear();
                                                 cin.ignore();
@@ -1000,7 +931,6 @@ int main()
                                             cin>>mode;
                                             while(!cin)
                                             {
-                                                
                                                 cout << "That was no integer! Please enter an integer:\n ";
                                                 cin.clear();
                                                 cin.ignore();
@@ -1031,7 +961,6 @@ int main()
                                             cin>>mode;
                                             while(!cin)
                                             {
-                                                
                                                 cout << "That was no integer! Please enter an integer:\n ";
                                                 cin.clear();
                                                 cin.ignore();
@@ -1055,8 +984,6 @@ int main()
                                     {
                                         cout<<"invalid input\n";
                                     }
-                                    
-                                    
                                 }
                             }
                             else if (building_num2==0)
@@ -1072,37 +999,20 @@ int main()
                     { flag2=false;
                         cout<<" Invalid entry! Please try again"<<endl;
                     }
-                    
-                    
                 }
                 while(flag2==false);
             }
         }
-        
-        
-        
-        
-        
-        
         else if (choice==3)
         {
             delete s1;
             exit(0);
         }
-        
         else
         {
-            
             cout<<" Invalid input!, Please try again"<<endl;
             continue;
         }
-        
     }
-    
     while(choice!=3);
 }
-
-
-
-
-
