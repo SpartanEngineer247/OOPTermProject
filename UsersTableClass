@@ -253,7 +253,18 @@ public:
 
 	void turnoffmachine(string machinename)
 	{
-
+		map<string, DryingMachine*>::iterator it;
+        	it = DryingTable.find(machinename);
+        	if (it == DryingTable.end())
+        	{
+        	    map<string, WashingMachine*>::iterator it2;
+        	    it2 = WashingTable.find(machinename);
+        	    it2->second->changestatus(-1);
+        	}
+        	else
+        	{
+        	    it->second->changestatus(-1);
+        	}
 	}
 };
 
