@@ -1,3 +1,25 @@
+//
+//  main.cpp
+//  term project
+//
+//  Created by Raushan Khullar on 3/11/20.
+//  Copyright © 2020 Raushan Khullar. All rights reserved.
+//
+
+//
+//  main.cpp
+//  term project
+//
+//  Created by Raushan Khullar on 3/11/20.
+//  Copyright © 2020 Raushan Khullar. All rights reserved.
+//
+//
+//  main.cpp
+//  Project
+//
+//  Created by Raushan Khullar on 2/22/20.
+//  Copyright © 2020 Raushan Khullar. All rights reserved.
+//
 #include"Timer.h"
 #include <chrono>
 #include <thread>
@@ -26,7 +48,7 @@ int main()
     s1 = Users_Database::GetInstance();int choice=0;
     do
     {
-        // system("CLS");
+       
         // displaying menu
         
         cout<<"**************************************\n";
@@ -38,13 +60,15 @@ int main()
         cout<<" 3)  Exit"<<endl;
         cout<<endl;
         
-        // Users_Database::logout();
+    
         
         int choice;
         
         cout<<" 1- To Create new user\n\n 2-To login.\n\n 3-To exit "<<endl;
         cin>>choice;
         // accepting users choice
+        
+        //checking if input is valid
         while(!cin)
         {
             cout << "That was no integer! Please enter an integer:\n ";
@@ -57,12 +81,14 @@ int main()
         
         string NetID; string Password;
         if (choice==1)
+            //creating a new user
         {   cout<<" To create new user: \n";
             cout<<" Enter NetID\n";
             cin>>NetID;
             cout<<" Enter password\n";
             cin>>Password;
             
+            //creating a new user
             s1->CreateNewUser( NetID , Password);
             //
             cout<<" Please login now:\n";
@@ -70,6 +96,7 @@ int main()
             cin>>NetID;
             cout<<" Enter password\n";
             cin>>Password;
+            // Logging user in
             if(s1->Login( NetID,  Password)==true)
             {
                 bool flag2=true;
@@ -79,13 +106,12 @@ int main()
                     flag2=true;
                     cout<<" 0)  Go back to previous page"<<endl;
                     cout<<" 1)  A1"<<endl;
-                    //   cout<<"2. A2"<<endl;
-                    //  cout<<"3. A5"<<endl;
-                    //  cout<<"4. A6"<<endl;
+                   
                     
                     
                     int building_num=0;
                     cin>>building_num;
+                    //validating input
                     while(!cin)
                     {
                         cout << "That was no integer! Please enter an integer:\n ";
@@ -93,7 +119,7 @@ int main()
                         cin.ignore();
                         cin >> building_num;
                     }
-                    //int building_num2;
+                    
                     if ( building_num==0)
                         
                     {
@@ -106,10 +132,10 @@ int main()
                         while(flag==false)
                         {
                             cout<<" 1)   A1A"<<endl;
-                            // cout<<"2.A1B"<<endl;
-                            //  cout<<"3.A1C"<<endl;
+                           
                             
                             cin>>building_num2;
+                            //validating input
                             while(!cin)
                             {
                                 cout << "That was no integer! Please enter an integer:\n ";
@@ -123,6 +149,7 @@ int main()
                                 bool flag3=false;
                                 while(flag3==false)
                                 {
+                                    
                                     cout<<" Washing machine program settings:\n";
                                     cout<<" Program 1: 10 minutes\n";
                                     cout<<" Program 2: 20 minutes\n";
@@ -138,6 +165,8 @@ int main()
                                     cout<<" Program 1: 30 minutes\n";
                                     cout<<endl;
                                     cout<<" Washing machines"<<endl;
+                                    
+                                    //Displaying the status of machines
                                     cout<<" 1)  Washing machine 1: ";
                                     if(s1->checkwashingmachinestatus("WM1")==0)
                                         cout<<" Available\n";
@@ -1071,3 +1100,8 @@ int main()
     
     while(choice!=3);
 }
+
+
+
+
+
