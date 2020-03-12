@@ -1,25 +1,3 @@
-//
-//  main.cpp
-//  term project
-//
-//  Created by Raushan Khullar on 3/11/20.
-//  Copyright © 2020 Raushan Khullar. All rights reserved.
-//
-
-//
-//  main.cpp
-//  term project
-//
-//  Created by Raushan Khullar on 3/11/20.
-//  Copyright © 2020 Raushan Khullar. All rights reserved.
-//
-//
-//  main.cpp
-//  Project
-//
-//  Created by Raushan Khullar on 2/22/20.
-//  Copyright © 2020 Raushan Khullar. All rights reserved.
-//
 #include"Timer.h"
 #include <chrono>
 #include <thread>
@@ -1093,8 +1071,3 @@ int main()
     
     while(choice!=3);
 }
-
-
-
-
-
